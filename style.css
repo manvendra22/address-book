@@ -50,6 +50,11 @@ input {
     justify-content: flex-end;
 }
 
+.icon {
+    width: 25px;
+    margin: 5px;
+}
+
 @media only screen and (max-width: 600px) {
     body {
         font-size: 12px;
@@ -57,5 +62,10 @@ input {
 
     .app-container {
         width: 80vw;
+    }
+
+    .icon {
+        width: 15px;
+        margin: 5px;
     }
 }
