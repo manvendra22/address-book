@@ -23,6 +23,13 @@ input {
     width: 40vw;
 }
 
+.search-container {
+    position: fixed;
+    top: 10%;
+    right: 30%;
+    width: 40%
+}
+
 .button-container {
     text-align: center;
 }
