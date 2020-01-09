@@ -3,10 +3,59 @@ body {
     font-size: 16px;
 }
 
+p {
+    margin: 0;
+}
+
+button {
+    background-color: #58B695 !important;
+}
+
+input {
+    width: 100%;
+}
+
 .app {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.app-container {
+    width: 50vw;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.list-item {
+    border: 2px solid #757575;
+    border-radius: 10px;
+    background-color: #D9FFF5;
+    padding: 10px;
+    display: flex;
+}
+
+.data-container {
+    width: 70%;
+}
+
+.icons-container {
+    width: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 12px;
+    }
+
+    .app-container {
+        width: 80vw;
+    }
 }

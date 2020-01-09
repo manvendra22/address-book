@@ -6,12 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Address Book</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 
 <body>
-    <div class="app"></div>
+    <div class="app">
+        <div class="app-container">
+            <div class="mb-3 search-container">
+                <input type="text" placeholder="Search contacts" class="search-bar" name="search-input" id="search">
+            </div>
+            <div class="mb-3 button-container">
+                <button class="btn btn-primary">Add Contact</button>
+            </div>
+            <div class="list-container">
+                <div class="list-item">
+                    <div class="data-container">
+                        <p>John Doe</p>
+                        <p>+91 98765 43210 (3 more)</p>
+                        <p>john.doe@gmail.com (1 more)</p>
+                    </div>
+                    <div class="icons-container">
+                        @ @ @
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
