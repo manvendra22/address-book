@@ -46,7 +46,7 @@
                         <p>john.doe@gmail.com (1 more)</p>
                     </div>
                     <div class="icons-container">
-                        <img src="/icons/eye.svg" class="icon" alt="" srcset="">
+                        <img src="/icons/eye.svg" class="icon" alt="" srcset="" id="viewcontact">
                         <img src="/icons/email.svg" class="icon" alt="" srcset="">
                         <img src="/icons/call.svg" class="icon" alt="" srcset="">
                     </div>
@@ -119,6 +119,61 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" id="addData">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="contactViewModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Contact Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="Name"><b>Name:</b></label>
+                                        <span>John Doe</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row" id="contactElement">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="Contact"><b>Contact</b></label>
+                                        <br>
+                                        <span>+91 79909 91525</span>
+                                        <br>
+                                        <span>+91 91377 60100</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="ContactType"><b>Contact Type</b></label>
+                                        <br>
+                                        <span>Home</span>
+                                        <br>
+                                        <span>Mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob"><b>DOB:</b></label>
+                                <span>22nd october 1992 </span>
+                                
+                            </div>
+                            <div class="form-group" id="emailElement">
+                                <label for="email"><b>Email</b></label>
+                                <br>
+                                <span>johnDoe@gmail.com</span>
                             </div>
                         </form>
                     </div>
