@@ -24,15 +24,11 @@ input {
 }
 
 .app-container {
+    margin-top: 10vh;
     width: 40vw;
 }
 
-.search-container {
-    position: fixed;
-    top: 10%;
-    right: 30%;
-    width: 40%
-}
+.search-container {}
 
 .button-container {
     text-align: center;
@@ -43,6 +39,7 @@ input {
     border-radius: 10px;
     background-color: #D9FFF5;
     padding: 10px;
+    margin-bottom: 10px;
     display: flex;
     position: relative;
 }

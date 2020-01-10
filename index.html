@@ -46,7 +46,8 @@
                         <p>john.doe@gmail.com (1 more)</p>
                     </div>
                     <div class="icons-container">
-                        <img src="/icons/eye.svg" class="icon" alt="" srcset="" id="viewcontact">
+                        <img src="/icons/eye.svg" class="icon" alt="" srcset="" data-toggle="modal"
+                            data-target="#contactViewModal">
                         <img src="/icons/email.svg" class="icon" alt="" srcset="">
                         <img src="/icons/call.svg" class="icon" alt="" srcset="">
                     </div>
@@ -100,22 +101,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="badge badge-pill badge-primary mb-3" id="addAnotherContact">Add another
-                                contact</span>
+                            <!-- <span class="badge badge-pill badge-primary mb-3" id="addAnotherContact">Add another
+                                contact</span> -->
                             <div class="form-group">
                                 <label for="dob">DOB</label>
                                 <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
                                     name="dob" placeholder="01/01/1990">
                             </div>
-                            <div id="emailContainer">
-                                <div class="form-group" id="emailElement">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="john@doe.com">
-                                </div>
+                            <!-- <div id="emailContainer"> -->
+                            <div class="form-group" id="emailElement">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="john@doe.com">
                             </div>
-                            <span class="badge badge-pill badge-primary mb-3" id="addAnotherEmail">Add another
-                                email</span>
+                            <!-- </div> -->
+                            <!-- <span class="badge badge-pill badge-primary mb-3" id="addAnotherEmail">Add another
+                                email</span> -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" id="addData">Add</button>
@@ -125,7 +126,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="modal fade" id="contactViewModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -168,7 +169,7 @@
                             <div class="form-group">
                                 <label for="dob"><b>DOB:</b></label>
                                 <span>22nd october 1992 </span>
-                                
+
                             </div>
                             <div class="form-group" id="emailElement">
                                 <label for="email"><b>Email</b></label>
