@@ -20,6 +20,7 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+    <script src="localforage.js"></script>
     <script src="script.js"></script>
 </head>
 
@@ -65,15 +66,15 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName"
-                                            placeholder="Enter first name">
+                                        <input type="text" class="form-control" id="firstName" name="firstName"
+                                            placeholder="Enter first name" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName"
-                                            placeholder="Enter last name">
+                                        <input type="text" class="form-control" id="lastName" name="lastName"
+                                            placeholder="Enter last name" required>
                                     </div>
                                 </div>
                             </div>
@@ -81,15 +82,15 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="contact">Contact</label>
-                                        <input type="text" class="form-control" id="contact"
-                                            placeholder="+91 98765 43210">
+                                        <input type="number" class="form-control" id="contact" name="contact"
+                                            placeholder="091 98765 43210" required>
                                         <span class="badge badge-pill badge-primary">Add another contact</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="contactType">Contact type</label>
-                                        <select class="form-control" id="contactType">
+                                        <select class="form-control" id="contactType" name="contactType">
                                             <option>Home</option>
                                             <option>Office</option>
                                             <option>Personal</option>
@@ -99,18 +100,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="dob">DOB</label>
-                                <input type="text" class="form-control" id="dob" placeholder="Enter DOB">
+                                <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
+                                    name="dob" placeholder="01/01/1990">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email address">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="john@doe.com">
                                 <span class="badge badge-pill badge-primary">Add another email</span>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="addData">Add</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </div>

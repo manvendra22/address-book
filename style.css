@@ -11,6 +11,10 @@ input {
     width: 100%;
 }
 
+.form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
+
 .app {
     min-height: 100vh;
     display: flex;
@@ -64,6 +68,10 @@ input {
     position: absolute;
     top: -13px;
     right: -19px;
+}
+
+.badge {
+    cursor: pointer;
 }
 
 /* media-queries */
