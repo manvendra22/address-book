@@ -17,3 +17,10 @@ $(document).ready(function () {
         $('#contactElement').after(contactElement)
     })
 })
+
+$(document).ready(function(){
+	$('#viewcontact').click(function(){
+  		$('#contactViewModal').modal('show')
+	});
+});
+
