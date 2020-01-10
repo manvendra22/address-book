@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -19,8 +22,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="localforage.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/pouchdb@7.1.1/dist/pouchdb.min.js"></script>
+
     <script src="script.js"></script>
 </head>
 
@@ -104,10 +107,12 @@
                                 <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
                                     name="dob" placeholder="01/01/1990">
                             </div>
-                            <div class="form-group" id="emailElement">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="john@doe.com">
+                            <div id="emailContainer">
+                                <div class="form-group" id="emailElement">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="john@doe.com">
+                                </div>
                             </div>
                             <span class="badge badge-pill badge-primary mb-3" id="addAnotherEmail">Add another
                                 email</span>
