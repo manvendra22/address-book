@@ -2,6 +2,8 @@
 $(document).ready(function () {
     let db = new PouchDB('contacts');
 
+    showContacts()
+
     db.changes({
         since: 'now',
         live: true
@@ -12,7 +14,7 @@ $(document).ready(function () {
             include_docs: true,
             descending: true
         }).then(function (result) {
-            console.log(result)
+            console.log('Fetched ', result)
             createContact(result.rows)
         }).catch(function (err) {
             console.log(err);
@@ -20,27 +22,43 @@ $(document).ready(function () {
     }
 
     function createContact(datas) {
+        let elements = ''
+
         datas.forEach(data => {
-            const { doc } = data
+            const { id, doc } = data
             const { firstName, lastName, contact, email } = doc
 
             let element = `<div class="list-item">
-                                <img src="/icons/cross.svg" class="icon cross" alt="" srcset="">
-                                <div class="data-container">
-                                    <p>${firstName} ${lastName}</p>
-                                    <p>${contact} (3 more)</p>
-                                    <p>${email} (1 more)</p>
-                                </div>
-                                <div class="icons-container">
-                                    <img src="/icons/eye.svg" class="icon" alt="" srcset="" data-toggle="modal" data-target="#contactViewModal">
-                                    <img src="/icons/email.svg" class="icon" alt="" srcset="">
-                                    <img src="/icons/call.svg" class="icon" alt="" srcset="">
-                                </div>
-                            </div>`
+                        <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
+                        <div class="data-container">
+                            <p>${firstName} ${lastName}</p>
+                            <p>${contact} (3 more)</p>
+                            <p>${email} (1 more)</p>
+                        </div>
+                        <div class="icons-container">
+                            <img src="/icons/eye.svg" class="icon" alt="" srcset="" data-id=${id} data-toggle="modal" data-target="#contactViewModal">
+                            <img src="/icons/email.svg" class="icon" alt="" srcset="">
+                            <img src="/icons/call.svg" class="icon" alt="" srcset="">
+                        </div>
+                     </div>`
 
-            $(element).appendTo('.list-container')
+            elements += element
         })
+
+        $('.list-container').html(elements)
     }
+
+    $(document).on('click', '.cross', function (e){
+        let id = $(this).attr("data-id")
+        
+        db.get(id).then(function(doc) {
+            return db.remove(doc);
+          }).then(function (result) {
+            console.log('Deleted ', result)
+          }).catch(function (err) {
+            console.log(err);
+        });          
+    })
 
     $('form').submit(function (e) {
         e.preventDefault();
@@ -54,7 +72,7 @@ $(document).ready(function () {
         }
 
         db.post(jsonData).then(function (response) {
-            console.log('Success ', response);
+            console.log('Added ', response);
         }).catch(function (err) {
             console.log(err);
         });
