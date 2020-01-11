@@ -79,11 +79,14 @@ function fillDataInEditModal(data) {
     $("#contact_type").val(contactType);
     $("#dob").val(dob);
     $("#email").val(email);
+    $("#addData").text('Update')
 }
 
 function addContact() {
     $("form").trigger("reset");
+    
     $("form").removeAttr("data-id");
+    $("#addData").text('Add')
 
     $('#contactFormModal').modal('show');
 }
