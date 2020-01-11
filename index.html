@@ -35,7 +35,7 @@
                     id="search">
             </div>
             <div class="mb-3 button-container">
-                <button class="btn btn-success" data-toggle="modal" data-target="#contactFormModal">Add Contact</button>
+                <button class="btn btn-success" onclick="addContact()">Add Contact</button>
             </div>
             <div class="mb-3 sort-container">
                <b>SORT :</b> 
@@ -53,6 +53,7 @@
                     </div>
                     <div class="icons-container">
                         <img src="/icons/eye.svg" class="icon eye" alt="" srcset="">
+                        <img src="/icons/edit.svg" class="icon edit" alt="" srcset="">
                         <img src="/icons/email.svg" class="icon" alt="" srcset="">
                         <img src="/icons/call.svg" class="icon" alt="" srcset="">
                     </div>
@@ -77,14 +78,14 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName"
+                                        <input type="text" class="form-control" id="first_name" name="firstName"
                                             placeholder="Enter first name" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName"
+                                        <input type="text" class="form-control" id="last_name" name="lastName"
                                             placeholder="Enter last name" required>
                                     </div>
                                 </div>
@@ -100,7 +101,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="contactType">Contact type</label>
-                                        <select class="form-control" id="contactType" name="contactType">
+                                        <select class="form-control" id="contact_type" name="contactType">
                                             <option>Home</option>
                                             <option>Office</option>
                                             <option>Personal</option>
