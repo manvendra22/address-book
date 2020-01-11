@@ -2,7 +2,9 @@
 $(document).ready(function () {
     let db = new PouchDB('contacts');
 
-    showContacts()
+    if(db) {
+        showContacts()
+    }
 
     db.changes({
         since: 'now',
@@ -72,6 +74,7 @@ $(document).ready(function () {
         }
 
         db.post(jsonData).then(function (response) {
+            $("form").trigger("reset");
             console.log('Added ', response);
         }).catch(function (err) {
             console.log(err);
