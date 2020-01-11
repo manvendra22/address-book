@@ -32,16 +32,18 @@
         <div class="app-container">
             <div class="mb-3 search-container">
                 <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
-                   oninput="searchData(this.value)" id="search">
+                    oninput="searchData(this.value)" id="search">
             </div>
             <div class="mb-3 button-container">
                 <button class="btn btn-success" onclick="addContact()">Add Contact</button>
             </div>
             <div class="mb-3 sort-container">
-               <b>SORT :</b> 
-               <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('firstName')">By First name</span>
-               <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('lastName')">By Last name</span>
-               <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('dob')">By DOB</span>
+                <b>SORT :</b>
+                <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('firstName')">By First
+                    name</span>
+                <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('lastName')">By Last
+                    name</span>
+                <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('dob')">By DOB</span>
             </div>
             <div class="list-container">
                 <div class="list-item">
@@ -78,15 +80,15 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" maxlength="25" class="form-control" id="first_name" name="firstName"
-                                            placeholder="Enter first name" required>
+                                        <input type="text" maxlength="25" class="form-control" id="first_name"
+                                            name="firstName" placeholder="Enter first name" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" maxlength="25" class="form-control" id="last_name" name="lastName"
-                                            placeholder="Enter last name" required>
+                                        <input type="text" maxlength="25" class="form-control" id="last_name"
+                                            name="lastName" placeholder="Enter last name" required>
                                     </div>
                                 </div>
                             </div>
@@ -94,8 +96,8 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="contact">Contact</label>
-                                        <input type="number" maxlength="13" class="form-control" id="contact" name="contact"
-                                            placeholder="091 98765 43210" required>
+                                        <input type="number" maxlength="13" class="form-control" id="contact"
+                                            name="contact" placeholder="+91 98765 43210" required>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -109,8 +111,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <span class="badge badge-pill badge-info mb-3" id="addAnotherContact">Add another
-                                contact</span> -->
+                            <span class="badge badge-pill badge-info mb-3" id="addAnotherContact">Add another
+                                contact</span>
                             <div class="form-group">
                                 <label for="dob">DOB</label>
                                 <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
@@ -123,8 +125,8 @@
                                     placeholder="john@doe.com">
                             </div>
                             <!-- </div> -->
-                            <!-- <span class="badge badge-pill badge-info mb-3" id="addAnotherEmail">Add another
-                                email</span> -->
+                            <span class="badge badge-pill badge-info mb-3" id="addAnotherEmail">Add another
+                                email</span>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" id="addData">Add</button>

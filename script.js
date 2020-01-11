@@ -1,6 +1,6 @@
 let db = new PouchDB('contacts');
 
-if(db) {
+if (db) {
     fetchContacts()
 }
 
@@ -17,7 +17,7 @@ function fetchContacts() {
         descending: true
     }).then(function (result) {
         console.log('Fetched ', result)
-        contactData = result.rows 
+        contactData = result.rows
         showContacts()
     }).catch(function (err) {
         console.log(err);
@@ -79,12 +79,13 @@ function fillDataInEditModal(data) {
     $("#contact_type").val(contactType);
     $("#dob").val(dob);
     $("#email").val(email);
+
     $("#addData").text('Update')
 }
 
 function addContact() {
     $("form").trigger("reset");
-    
+
     $("form").removeAttr("data-id");
     $("#addData").text('Add')
 
@@ -94,7 +95,7 @@ function addContact() {
 
 function searchData(value) {
 
-    let newData = contactData.filter(function(data) {
+    let newData = contactData.filter(function (data) {
         let fullName = `${data.doc.firstName} ${data.doc.lastName}`
         fullName = fullName.toLowerCase()
 
@@ -107,17 +108,17 @@ function searchData(value) {
 function sortData(type) {
     // type = firstName / lastName / dob
 
-    contactData.sort(function(a ,b) {
+    contactData.sort(function (a, b) {
 
-        let x = a.doc[type], y = b.doc[type] 
+        let x = a.doc[type], y = b.doc[type]
 
-        if(type == 'dob') {
+        if (type == 'dob') {
             x = new Date(x)
             y = new Date(y)
         }
 
-        if(x < y) { return -1; }
-        if(x > y) { return 1; }
+        if (x < y) { return -1; }
+        if (x > y) { return 1; }
         return 0;
     })
     showContacts()
@@ -125,38 +126,38 @@ function sortData(type) {
 
 $(document).ready(function () {
 
-    $(document).on('click', '.cross', function (e){
+    $(document).on('click', '.cross', function (e) {
         let id = $(this).attr("data-id")
-        
-        db.get(id).then(function(doc) {
+
+        db.get(id).then(function (doc) {
             return db.remove(doc);
-          }).then(function (result) {
+        }).then(function (result) {
             console.log('Deleted ', result)
-          }).catch(function (err) {
+        }).catch(function (err) {
             console.log(err);
-        });          
+        });
     })
 
-    $(document).on('click', '.eye', function (e){
+    $(document).on('click', '.eye', function (e) {
         let id = $(this).attr("data-id")
-        
-        db.get(id).then(function(doc) {
+
+        db.get(id).then(function (doc) {
             console.log('doc ', doc)
             fillDataInViewModal(doc)
-          }).catch(function (err) {
+        }).catch(function (err) {
             console.log(err);
-        });          
+        });
     })
 
-    $(document).on('click', '.edit', function (e){
+    $(document).on('click', '.edit', function (e) {
         let id = $(this).attr("data-id")
-        
-        db.get(id).then(function(doc) {
+
+        db.get(id).then(function (doc) {
             console.log('doc ', doc)
             fillDataInEditModal(doc)
-          }).catch(function (err) {
+        }).catch(function (err) {
             console.log(err);
-        });          
+        });
     })
 
     $('form').submit(function (e) {
@@ -173,34 +174,48 @@ $(document).ready(function () {
             jsonData[formData[i]['name']] = formData[i]['value'];
         }
 
-        if(id) {
+        if (id) {
             let rev = $(this).attr("data-rev")
-
             jsonData._id = id
             jsonData._rev = rev
-
-            db.put(jsonData).then(function (response) {
-                console.log('Updated ', response);
-            }).catch(function (err) {
-                console.log(err);
-            });
         } else {
-            db.post(jsonData).then(function (response) {
-                console.log('Added ', response);
-            }).catch(function (err) {
-                console.log(err);
-            });
+            jsonData._id = new Date().toISOString()
         }
+
+        db.put(jsonData).then(function (response) {
+            console.log('Added ', response);
+        }).catch(function (err) {
+            console.log(err);
+        });
     });
 
-    // let emailElement = $('#emailElement').clone()
-    // let contactElement = $('#contactElement').clone()
+    $('#addAnotherEmail').click(function () {
+        let element = ` <div class="form-group" id="emailElement">
+                                <label for="email">Email</label>
+                                <input type="email" maxlength="30" class="form-control" id="email" name="email"
+                                    placeholder="john@doe.com">
+                        </div>`
+    })
 
-    // $('#addAnotherEmail').click(function () {
-    //     $('#emailContainer').append(emailElement)
-    // })
-
-    // $('#addAnotherContact').click(function () {
-    //     $('#contactElement').after(contactElement)
-    // })
+    $('#addAnotherContact').click(function () {
+        let element = ` <div class="form-row" id="contactElement">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="contact">Contact</label>
+                                        <input type="number" maxlength="13" class="form-control" id="contact"
+                                            name="contact" placeholder="+91 98765 43210" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="contactType">Contact type</label>
+                                        <select class="form-control" id="contact_type" name="contactType">
+                                            <option>Home</option>
+                                            <option>Office</option>
+                                            <option>Personal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>`
+    })
 })
