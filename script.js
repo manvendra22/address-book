@@ -92,8 +92,16 @@ function sortData(type) {
     // type = firstName / lastName / dob
 
     contactData.sort(function(a ,b) {
-        if(a.doc[type] < b.doc[type]) { return -1; }
-        if(a.doc[type] > b.doc[type]) { return 1; }
+
+        let x = a.doc[type], y = b.doc[type] 
+
+        if(type == 'dob') {
+            x = new Date(x)
+            y = new Date(y)
+        }
+
+        if(x < y) { return -1; }
+        if(x > y) { return 1; }
         return 0;
     })
     showContacts()
