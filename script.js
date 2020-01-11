@@ -1,47 +1,50 @@
 let db = new PouchDB('contacts');
 
 if(db) {
-    showContacts()
+    fetchContacts()
 }
 
 db.changes({
     since: 'now',
     live: true
-}).on('change', showContacts);
+}).on('change', fetchContacts);
 
-function showContacts() {
+let contactData = []
+
+function fetchContacts() {
     db.allDocs({
         include_docs: true,
         descending: true
     }).then(function (result) {
         console.log('Fetched ', result)
-        createContact(result.rows)
+        contactData = result.rows 
+        showContacts()
     }).catch(function (err) {
         console.log(err);
     });
 }
 
-function createContact(data) {
+function showContacts() {
     let elements = ''
 
-    data.forEach(data => {
+    contactData.forEach(data => {
         const { id, doc } = data
         const { firstName, lastName, contact, email } = doc
 
         let element = `<div class="list-item">
-                    <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
-                    <div class="data-container">
-                        <p>${firstName} ${lastName}</p>
-                        <p>${contact} (3 more)</p>
-                        <p>${email} (1 more)</p>
-                    </div>
-                    <div class="icons-container">
-                        <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
-                        <img src="/icons/edit.svg" class="icon edit" alt="" srcset="" data-id=${id}>
-                        <img src="/icons/email.svg" class="icon" alt="" srcset="">
-                        <img src="/icons/call.svg" class="icon" alt="" srcset="">
-                    </div>
-                 </div>`
+                            <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
+                            <div class="data-container">
+                                <p>${firstName} ${lastName}</p>
+                                <p>${contact} (3 more)</p>
+                                <p>${email} (1 more)</p>
+                            </div>
+                            <div class="icons-container">
+                                <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
+                                <img src="/icons/edit.svg" class="icon edit" alt="" srcset="" data-id=${id}>
+                                <img src="/icons/email.svg" class="icon" alt="" srcset="">
+                                <img src="/icons/call.svg" class="icon" alt="" srcset="">
+                            </div>
+                        </div>`
 
         elements += element
     })
@@ -83,6 +86,17 @@ function addContact() {
     $("form").removeAttr("data-id");
 
     $('#contactFormModal').modal('show');
+}
+
+function sortData(type) {
+    // type = firstName / lastName / dob
+
+    contactData.sort(function(a ,b) {
+        if(a.doc[type] < b.doc[type]) { return -1; }
+        if(a.doc[type] > b.doc[type]) { return 1; }
+        return 0;
+    })
+    showContacts()
 }
 
 $(document).ready(function () {
