@@ -32,7 +32,7 @@
         <div class="app-container">
             <div class="mb-3 search-container">
                 <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
-                    id="search">
+                   oninput="searchData(this.value)" id="search">
             </div>
             <div class="mb-3 button-container">
                 <button class="btn btn-success" onclick="addContact()">Add Contact</button>

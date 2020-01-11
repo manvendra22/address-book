@@ -24,10 +24,10 @@ function fetchContacts() {
     });
 }
 
-function showContacts() {
+function showContacts(newData = contactData) {
     let elements = ''
 
-    contactData.forEach(data => {
+    newData.forEach(data => {
         const { id, doc } = data
         const { firstName, lastName, contact, email } = doc
 
@@ -86,6 +86,19 @@ function addContact() {
     $("form").removeAttr("data-id");
 
     $('#contactFormModal').modal('show');
+}
+
+
+function searchData(value) {
+
+    let newData = contactData.filter(function(data) {
+        let fullName = `${data.doc.firstName} ${data.doc.lastName}`
+        fullName = fullName.toLowerCase()
+
+        return fullName.includes(value)
+    })
+
+    showContacts(newData)
 }
 
 function sortData(type) {
