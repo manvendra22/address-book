@@ -38,7 +38,7 @@ $(document).ready(function () {
                             <p>${email} (1 more)</p>
                         </div>
                         <div class="icons-container">
-                            <img src="/icons/eye.svg" class="icon" alt="" srcset="" data-id=${id} data-toggle="modal" data-target="#contactViewModal">
+                            <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
                             <img src="/icons/email.svg" class="icon" alt="" srcset="">
                             <img src="/icons/call.svg" class="icon" alt="" srcset="">
                         </div>
@@ -62,6 +62,29 @@ $(document).ready(function () {
         });          
     })
 
+    $(document).on('click', '.eye', function (e){
+        let id = $(this).attr("data-id")
+        
+        db.get(id).then(function(doc) {
+            console.log('doc ', doc)
+            fillDataInModal(doc)
+          }).catch(function (err) {
+            console.log(err);
+        });          
+    })
+
+    function fillDataInModal(data) {
+        const { firstName, lastName, contact, contactType, dob, email } = data
+
+        $('#contactViewModal').modal('show');
+
+        $("#view_name").text(`${firstName} ${lastName}`);
+        $("#view_contact").text(contact);
+        $("#view_contact_type").text(contactType);
+        $("#view_dob").text(dob);
+        $("#view_email").text(email);
+    }
+
     $('form').submit(function (e) {
         e.preventDefault();
         let formData = $('form').serializeArray()
@@ -80,6 +103,8 @@ $(document).ready(function () {
             console.log(err);
         });
     });
+
+    
 
     // let emailElement = $('#emailElement').clone()
     // let contactElement = $('#contactElement').clone()
