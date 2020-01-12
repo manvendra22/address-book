@@ -39,11 +39,11 @@
             </div>
             <div class="mb-3 sort-container">
                 <b>SORT :</b>
-                <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('firstName')">By First
+                <span class="badge badge-pill badge-info" onclick="sortData('firstName')">By First
                     name</span>
-                <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('lastName')">By Last
+                <span class="badge badge-pill badge-info" onclick="sortData('lastName')">By Last
                     name</span>
-                <span class="badge badge-pill badge-info" id="addAnotherEmail" onclick="sortData('dob')">By DOB</span>
+                <span class="badge badge-pill badge-info" onclick="sortData('dob')">By DOB</span>
             </div>
             <div class="list-container">
                 <div class="list-item">
@@ -80,34 +80,36 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" maxlength="25" class="form-control" id="first_name"
+                                        <input type="text" maxlength="25" class="form-control" id="firstName"
                                             name="firstName" placeholder="Enter first name" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" maxlength="25" class="form-control" id="last_name"
+                                        <input type="text" maxlength="25" class="form-control" id="lastName"
                                             name="lastName" placeholder="Enter last name" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row" id="contactElement">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="contact">Contact</label>
-                                        <input type="number" maxlength="13" class="form-control" id="contact"
-                                            name="contact" placeholder="+91 98765 43210" required>
+                            <div id="contactContainer">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="contact_1">Contact</label>
+                                            <input type="number" maxlength="13" class="form-control" id="contact_1"
+                                                name="contact_1" placeholder="+91 98765 43210" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="contactType">Contact type</label>
-                                        <select class="form-control" id="contact_type" name="contactType">
-                                            <option>Home</option>
-                                            <option>Office</option>
-                                            <option>Personal</option>
-                                        </select>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="contactType_1">Contact type</label>
+                                            <select class="form-control" id="contactType_1" name="contactType_1">
+                                                <option>Home</option>
+                                                <option>Office</option>
+                                                <option>Personal</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -118,13 +120,13 @@
                                 <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
                                     name="dob" placeholder="01/01/1990">
                             </div>
-                            <!-- <div id="emailContainer"> -->
-                            <div class="form-group" id="emailElement">
-                                <label for="email">Email</label>
-                                <input type="email" maxlength="30" class="form-control" id="email" name="email"
-                                    placeholder="john@doe.com">
+                            <div id="emailContainer">
+                                <div class="form-group">
+                                    <label for="email_1">Email</label>
+                                    <input type="email" maxlength="30" class="form-control" id="email_1" name="email_1"
+                                        placeholder="john@doe.com">
+                                </div>
                             </div>
-                            <!-- </div> -->
                             <span class="badge badge-pill badge-info mb-3" id="addAnotherEmail">Add another
                                 email</span>
                             <div class="modal-footer">
@@ -153,37 +155,23 @@
                                 <span id="view_name">John Doe</span>
                             </div>
                         </div>
-                        <div class="row mt-2" id="contactElement">
-                            <div class="col">
-                                <span><b>Contact:</b></span>
-                                <div>
-                                    <span id="view_contact">+91 79909 91525</span>
-                                    <!-- <br> -->
-                                    <!-- <span>+91 91377 60100</span> -->
-                                </div>
+                        <div class="row mt-2">
+                            <div class="col" id="view_contact_container">
+                                <div><b>Contact:</b></div>
                             </div>
-                            <div class="col">
-                                <span><b>Contact Type:</b></span>
-                                <div>
-                                    <span id="view_contact_type">Home</span>
-                                    <!-- <br> -->
-                                    <!-- <span>Mobile</span> -->
-                                </div>
+                            <div class="col" id="view_contact_type_container">
+                                <div><b>Contact Type:</b></div>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
                                 <span><b>DOB:</b></span>
-                                <span id="view_dob">22nd october 1992 </span>
+                                <span id="view_dob"></span>
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col">
-                                <span><b>Email:</b></span>
-                                <br>
-                                <span id="view_email">johnDoe@gmail.com</span>
-                                <!-- <br> -->
-                                <!-- <span>mjdeora@gmail.com</span> -->
+                            <div class="col" id="view_email_container">
+                                <div><b>Email:</b></div>
                             </div>
                         </div>
                     </div>

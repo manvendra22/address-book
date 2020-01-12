@@ -29,14 +29,16 @@ function showContacts(newData = contactData) {
 
     newData.forEach(data => {
         const { id, doc } = data
-        const { firstName, lastName, contact, email } = doc
+        const { firstName, lastName, contacts, emails } = doc
+
+        // TODO: Length of Emails & Contacts
 
         let element = `<div class="list-item">
                             <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
                             <div class="data-container">
                                 <p>${firstName} ${lastName}</p>
-                                <p>${contact} (3 more)</p>
-                                <p>${email} (1 more)</p>
+                                <p>${contacts[0].value} (${contacts.length / 2 - 1} more)</p>
+                                <p>${emails[0].value} (${emails.length - 1} more)</p>
                             </div>
                             <div class="icons-container">
                                 <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
@@ -53,19 +55,33 @@ function showContacts(newData = contactData) {
 }
 
 function fillDataInViewModal(data) {
-    const { firstName, lastName, contact, contactType, dob, email } = data
+    const { firstName, lastName, dob, contacts, emails } = data
 
     $('#contactViewModal').modal('show');
 
     $("#view_name").text(`${firstName} ${lastName}`);
-    $("#view_contact").text(contact);
-    $("#view_contact_type").text(contactType);
     $("#view_dob").text(dob);
-    $("#view_email").text(email);
+
+    contacts.forEach(contact => {
+        if (contact.name.includes('contactType')) {
+            let contactTypeElement = `<div>${contact.value}</div>`
+            $('#view_contact_type_container').append(contactTypeElement)
+        } else {
+            let contactElement = `<div>${contact.value}</div>`
+            $('#view_contact_container').append(contactElement)
+        }
+    })
+
+    emails.forEach(email => {
+        let elementEmail = `<div>${email.value}</div>`
+
+        $('#view_email_container').append(elementEmail)
+    })
+
 }
 
 function fillDataInEditModal(data) {
-    const { firstName, lastName, contact, contactType, dob, email, _id, _rev } = data
+    const { firstName, lastName, contacts, dob, emails, _id, _rev } = data
 
     $("form").trigger("reset");
     $('#contactFormModal').modal('show');
@@ -73,14 +89,61 @@ function fillDataInEditModal(data) {
     $("form").attr("data-id", _id);
     $("form").attr("data-rev", _rev);
 
-    $("#first_name").val(firstName);
-    $("#last_name").val(lastName);
-    $("#contact").val(contact);
-    $("#contact_type").val(contactType);
+    $("#firstName").val(firstName);
+    $("#lastName").val(lastName);
     $("#dob").val(dob);
-    $("#email").val(email);
-
     $("#addData").text('Update')
+
+    let contactElement = null, contactTypeElement = null;
+
+    $('#contactContainer').html(null)
+    $('#emailContainer').html(null)
+
+    contacts.forEach(contact => {
+
+        if (contact.name.includes('contactType')) {
+            contactTypeElement = `<div class="form-group">
+                                        <label for=${contact.name}>Contact type</label>
+                                        <select class="form-control" id=${contact.name} name=${contact.name} value=${contact.value}>
+                                            <option>Home</option>
+                                            <option>Office</option>
+                                            <option>Personal</option>
+                                        </select>
+                                    </div>`
+
+        } else {
+            contactElement = `<div class="form-group">
+                                <label for=${contact.name}>Contact</label>
+                                <input type="number" maxlength="13" class="form-control" id=${contact.name}
+                                    name=${contact.name} placeholder="+91 98765 43210" required value=${contact.value}>
+                            </div>`
+        }
+
+        if (contactTypeElement && contactElement) {
+            let elementContact = ` <div class="form-row">
+                                <div class="col">
+                                    ${contactElement}
+                                </div>
+                                <div class="col">
+                                    ${contactTypeElement}
+                                </div>
+                            </div>`
+
+            $('#contactContainer').append(elementContact)
+
+            contactTypeElement = null, contactElement = null
+        }
+    })
+
+    emails.forEach(email => {
+        let elementEmail = ` <div class="form-group">
+                                <label for=${email.name}>Email</label>
+                                <input type="email" maxlength="30" class="form-control" id=${email.name} name=${email.name}
+                                    placeholder="john@doe.com" value=${email.value}>
+                            </div>`
+
+        $('#emailContainer').append(elementEmail)
+    })
 }
 
 function addContact() {
@@ -126,6 +189,43 @@ function sortData(type) {
 
 $(document).ready(function () {
 
+    $('#contactViewModal').on('hide.bs.modal', function (e) {
+        $('#view_contact_container').html(null)
+        $('#view_contact_type_container').html(null)
+        $('#view_email_container').html(null)
+    })
+
+    $('#contactFormModal').on('hide.bs.modal', function (e) {
+        let emailElement = `<div class="form-group">
+                                    <label for="email_1">Email</label>
+                                    <input type="email" maxlength="30" class="form-control" id="email_1" name="email_1"
+                                        placeholder="john@doe.com">
+                            </div>`
+
+        let contactElement = `<div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="contact_1">Contact</label>
+                                            <input type="number" maxlength="13" class="form-control" id="contact_1"
+                                                name="contact_1" placeholder="+91 98765 43210" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="contactType_1">Contact type</label>
+                                            <select class="form-control" id="contactType_1" name="contactType_1">
+                                                <option>Home</option>
+                                                <option>Office</option>
+                                                <option>Personal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            </div>`
+
+        $('#contactContainer').html(contactElement)
+        $('#emailContainer').html(emailElement)
+    })
+
     $(document).on('click', '.cross', function (e) {
         let id = $(this).attr("data-id")
 
@@ -167,12 +267,25 @@ $(document).ready(function () {
 
         $('#contactFormModal').modal('hide');
 
-        let formData = $('form').serializeArray()
-        let jsonData = {};
+        let formData = $('form').serializeArray();
+        let jsonData = {}, contacts = [], emails = [];
 
-        for (let i = 0; i < formData.length; i++) {
-            jsonData[formData[i]['name']] = formData[i]['value'];
-        }
+        formData.forEach(data => {
+            if (data['name'].includes('contact')) {
+                contacts.push(data)
+            } else if (data['name'].includes('email')) {
+                emails.push(data)
+            } else {
+                jsonData[data['name']] = data['value'];
+            }
+        })
+
+        jsonData.contacts = contacts;
+        jsonData.emails = emails;
+
+        // for (let i = 0; i < formData.length; i++) {
+        //     jsonData[formData[i]['name']] = formData[i]['value'];
+        // }
 
         if (id) {
             let rev = $(this).attr("data-rev")
@@ -190,26 +303,34 @@ $(document).ready(function () {
     });
 
     $('#addAnotherEmail').click(function () {
-        let element = ` <div class="form-group" id="emailElement">
-                                <label for="email">Email</label>
-                                <input type="email" maxlength="30" class="form-control" id="email" name="email"
+        let emailContainer = $('#emailContainer').children()
+        let length = emailContainer.length
+
+        let element = ` <div class="form-group">
+                                <label for="email_${length + 1}">Email</label>
+                                <input type="email" maxlength="30" class="form-control" id="email_${length + 1}" name="email_${length + 1}"
                                     placeholder="john@doe.com">
                         </div>`
+
+        $('#emailContainer').append(element)
     })
 
     $('#addAnotherContact').click(function () {
-        let element = ` <div class="form-row" id="contactElement">
+        let contactContainer = $('#contactContainer').children()
+        let length = contactContainer.length
+
+        let element = ` <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="contact">Contact</label>
-                                        <input type="number" maxlength="13" class="form-control" id="contact"
-                                            name="contact" placeholder="+91 98765 43210" required>
+                                        <label for="contact_${length + 1}">Contact</label>
+                                        <input type="number" maxlength="13" class="form-control" id="contact_${length + 1}"
+                                            name="contact_${length + 1}" placeholder="+91 98765 43210" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="contactType">Contact type</label>
-                                        <select class="form-control" id="contact_type" name="contactType">
+                                        <label for="contactType_${length + 1}">Contact type</label>
+                                        <select class="form-control" id="contactType_${length + 1}" name="contactType_${length + 1}">
                                             <option>Home</option>
                                             <option>Office</option>
                                             <option>Personal</option>
@@ -217,5 +338,7 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                         </div>`
+
+        $('#contactContainer').append(element)
     })
 })
