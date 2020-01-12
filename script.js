@@ -153,6 +153,35 @@ function addContact() {
     $("#addData").text('Add')
 
     $('#contactFormModal').modal('show');
+
+    let emailElement = `<div class="form-group">
+                                    <label for="email_1">Email</label>
+                                    <input type="email" maxlength="30" class="form-control" id="email_1" name="email_1"
+                                        placeholder="john@doe.com">
+                            </div>`
+
+    let contactElement = `<div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="contact_1">Contact</label>
+                                            <input type="number" maxlength="13" class="form-control" id="contact_1"
+                                                name="contact_1" placeholder="+91 98765 43210" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="contactType_1">Contact type</label>
+                                            <select class="form-control" id="contactType_1" name="contactType_1">
+                                                <option>Home</option>
+                                                <option>Office</option>
+                                                <option>Personal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            </div>`
+
+    $('#contactContainer').html(contactElement)
+    $('#emailContainer').html(emailElement)
 }
 
 
@@ -193,37 +222,6 @@ $(document).ready(function () {
         $('#view_contact_container').html(null)
         $('#view_contact_type_container').html(null)
         $('#view_email_container').html(null)
-    })
-
-    $('#contactFormModal').on('hide.bs.modal', function (e) {
-        let emailElement = `<div class="form-group">
-                                    <label for="email_1">Email</label>
-                                    <input type="email" maxlength="30" class="form-control" id="email_1" name="email_1"
-                                        placeholder="john@doe.com">
-                            </div>`
-
-        let contactElement = `<div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="contact_1">Contact</label>
-                                            <input type="number" maxlength="13" class="form-control" id="contact_1"
-                                                name="contact_1" placeholder="+91 98765 43210" required>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="contactType_1">Contact type</label>
-                                            <select class="form-control" id="contactType_1" name="contactType_1">
-                                                <option>Home</option>
-                                                <option>Office</option>
-                                                <option>Personal</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                            </div>`
-
-        $('#contactContainer').html(contactElement)
-        $('#emailContainer').html(emailElement)
     })
 
     $(document).on('click', '.cross', function (e) {
@@ -269,6 +267,8 @@ $(document).ready(function () {
 
         let formData = $('form').serializeArray();
         let jsonData = {}, contacts = [], emails = [];
+
+        console.log('formData ', formData)
 
         formData.forEach(data => {
             if (data['name'].includes('contact')) {
