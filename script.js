@@ -1,7 +1,7 @@
 let db = new PouchDB('contacts');
 
 if (db) {
-    fetchContacts()
+    // fetchContacts()
 }
 
 db.changes({
@@ -45,7 +45,7 @@ function showContacts(newData = contactData) {
                                 <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
                                 <img src="/icons/edit.svg" class="icon edit" alt="" srcset="" data-id=${id}>
                                  ${emails[0].value ? `<a href="mailto:${emails[0].value}"><img src="/icons/email.svg" class="icon" alt="" srcset=""></a>` : ''}
-                                <a href="tel:${contacts[0].value}"><img src="/icons/call.svg" class="icon" alt="" srcset=""><a>
+                                <a href="tel:${contacts[0].value}"><img src="/icons/call.svg" class="icon" alt="" srcset=""></a>
                             </div>
                         </div>`
 
