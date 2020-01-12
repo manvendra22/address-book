@@ -270,7 +270,7 @@ function getListElement(firstName, lastName, contacts, emails, id) {
     return `<div class="list-item">
         <img src="/icons/cross.svg" class="icon cross" alt="delete" data-id=${id}>
         <div class="data-container">
-            <p>${firstName} ${lastName}</p>
+            <p class="text-capitalize">${firstName} ${lastName}</p>
             <p>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</p>
             ${emails[0].value ? `<p>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}  </p>` : ''} 
         </div>
