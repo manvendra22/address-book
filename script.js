@@ -179,9 +179,9 @@ function sortData(type) {
 $(document).ready(function () {
 
     $('#contactViewModal').on('hide.bs.modal', function (e) {
-        $('#view_contact_container').html(null)
-        $('#view_contact_type_container').html(null)
-        $('#view_email_container').html(null)
+        $('#view_contact_container').html('<div><b>Contact:</b></div>')
+        $('#view_contact_type_container').html('<div><b>Contact Type:</b></div>')
+        $('#view_email_container').html('<div><b>Email:</b></div>')
     })
 
     $(document).on('click', '.cross', function (e) {
