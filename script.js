@@ -31,20 +31,21 @@ function showContacts(newData = contactData) {
         const { id, doc } = data
         const { firstName, lastName, contacts, emails } = doc
 
-        // TODO: Length of Emails & Contacts
+        let emailsLength = emails.length - 1
+        let contactsLength = contacts.length / 2 - 1
 
         let element = `<div class="list-item">
                             <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
                             <div class="data-container">
                                 <p>${firstName} ${lastName}</p>
-                                <p>${contacts[0].value} (${contacts.length / 2 - 1} more)</p>
-                                <p>${emails[0].value} (${emails.length - 1} more)</p>
+                                <p>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</p>
+                                ${emails[0].value ? `<p>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}  </p>` : ''} 
                             </div>
                             <div class="icons-container">
                                 <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
                                 <img src="/icons/edit.svg" class="icon edit" alt="" srcset="" data-id=${id}>
-                                <img src="/icons/email.svg" class="icon" alt="" srcset="">
-                                <img src="/icons/call.svg" class="icon" alt="" srcset="">
+                                 ${emails[0].value ? `<a href="mailto:${emails[0].value}"><img src="/icons/email.svg" class="icon" alt="" srcset=""></a>` : ''}
+                                <a href="tel:${contacts[0].value}"><img src="/icons/call.svg" class="icon" alt="" srcset=""><a>
                             </div>
                         </div>`
 
