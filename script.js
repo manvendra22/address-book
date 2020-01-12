@@ -1,7 +1,7 @@
 let db = new PouchDB('contacts');
 
 if (db) {
-    // fetchContacts()
+    fetchContacts()
 }
 
 db.changes({
@@ -298,12 +298,16 @@ function getContactElement(name, value) {
 function getContactTypeElement(name, value) {
     return `<div class="form-group">
                 <label for=${name}>Contact type</label>
-                <select class="form-control" id=${name} name=${name} value=${value}>
-                    <option>Home</option>
-                    <option>Office</option>
-                    <option>Personal</option>
+                <select class="form-control" id=${name} name=${name}>
+                    ${getOptions(value)}
                 </select>
             </div>`
+}
+
+function getOptions(value) {
+    return `<option ${value === 'Home' ? 'selected' : ''}>Home</option>
+            <option ${value === 'Office' ? 'selected' : ''}>Office</option>
+            <option ${value === 'Personal' ? 'selected' : ''}>Personal</option>`
 }
 
 function getFullContactElement(contactElement, contactTypeElement) {
