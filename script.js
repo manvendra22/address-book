@@ -102,47 +102,25 @@ function fillDataInEditModal(data) {
     contacts.forEach(contact => {
 
         if (contact.name.includes('contactType')) {
-            contactTypeElement = `<div class="form-group">
-                                        <label for=${contact.name}>Contact type</label>
-                                        <select class="form-control" id=${contact.name} name=${contact.name} value=${contact.value}>
-                                            <option>Home</option>
-                                            <option>Office</option>
-                                            <option>Personal</option>
-                                        </select>
-                                    </div>`
+            contactTypeElement = getContactTypeElement(contact.name, contact.value)
 
         } else {
-            contactElement = `<div class="form-group">
-                                <label for=${contact.name}>Contact</label>
-                                <input type="number" maxlength="13" class="form-control" id=${contact.name}
-                                    name=${contact.name} placeholder="+91 98765 43210" required value=${contact.value}>
-                            </div>`
+            contactElement = getContactElement(contact.name, contact.value)
         }
 
         if (contactTypeElement && contactElement) {
-            let elementContact = ` <div class="form-row">
-                                <div class="col">
-                                    ${contactElement}
-                                </div>
-                                <div class="col">
-                                    ${contactTypeElement}
-                                </div>
-                            </div>`
+            let fullContactElement = getFullContactElement(contactElement, contactTypeElement)
 
-            $('#contactContainer').append(elementContact)
+            $('#contactContainer').append(fullContactElement)
 
             contactTypeElement = null, contactElement = null
         }
     })
 
     emails.forEach(email => {
-        let elementEmail = ` <div class="form-group">
-                                <label for=${email.name}>Email</label>
-                                <input type="email" maxlength="30" class="form-control" id=${email.name} name=${email.name}
-                                    placeholder="john@doe.com" value=${email.value}>
-                            </div>`
+        let emailElement = getEmailElement(email.name, email.value)
 
-        $('#emailContainer').append(elementEmail)
+        $('#emailContainer').append(emailElement)
     })
 }
 
@@ -154,34 +132,15 @@ function addContact() {
 
     $('#contactFormModal').modal('show');
 
-    let emailElement = `<div class="form-group">
-                                    <label for="email_1">Email</label>
-                                    <input type="email" maxlength="30" class="form-control" id="email_1" name="email_1"
-                                        placeholder="john@doe.com">
-                            </div>`
+    let emailElement = getEmailElement('email_1', '')
 
-    let contactElement = `<div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="contact_1">Contact</label>
-                                            <input type="number" maxlength="13" class="form-control" id="contact_1"
-                                                name="contact_1" placeholder="+91 98765 43210" required>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="contactType_1">Contact type</label>
-                                            <select class="form-control" id="contactType_1" name="contactType_1">
-                                                <option>Home</option>
-                                                <option>Office</option>
-                                                <option>Personal</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                            </div>`
+    let contactElement = getContactElement('contact_1', '')
+    let contactTypeElement = getContactTypeElement('contactType_1', '')
+    let fullContactElement = getFullContactElement(contactElement, contactTypeElement)
 
-    $('#contactContainer').html(contactElement)
     $('#emailContainer').html(emailElement)
+
+    $('#contactContainer').html(fullContactElement)
 }
 
 
@@ -283,10 +242,6 @@ $(document).ready(function () {
         jsonData.contacts = contacts;
         jsonData.emails = emails;
 
-        // for (let i = 0; i < formData.length; i++) {
-        //     jsonData[formData[i]['name']] = formData[i]['value'];
-        // }
-
         if (id) {
             let rev = $(this).attr("data-rev")
             jsonData._id = id
@@ -306,39 +261,57 @@ $(document).ready(function () {
         let emailContainer = $('#emailContainer').children()
         let length = emailContainer.length
 
-        let element = ` <div class="form-group">
-                                <label for="email_${length + 1}">Email</label>
-                                <input type="email" maxlength="30" class="form-control" id="email_${length + 1}" name="email_${length + 1}"
-                                    placeholder="john@doe.com">
-                        </div>`
+        let emailElement = getEmailElement(`email_${length + 1}`, '')
 
-        $('#emailContainer').append(element)
+        $('#emailContainer').append(emailElement)
     })
 
     $('#addAnotherContact').click(function () {
         let contactContainer = $('#contactContainer').children()
         let length = contactContainer.length
 
-        let element = ` <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="contact_${length + 1}">Contact</label>
-                                        <input type="number" maxlength="13" class="form-control" id="contact_${length + 1}"
-                                            name="contact_${length + 1}" placeholder="+91 98765 43210" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="contactType_${length + 1}">Contact type</label>
-                                        <select class="form-control" id="contactType_${length + 1}" name="contactType_${length + 1}">
-                                            <option>Home</option>
-                                            <option>Office</option>
-                                            <option>Personal</option>
-                                        </select>
-                                    </div>
-                                </div>
-                        </div>`
+        let contactElement = getContactElement(`contact_${length + 1}`, '')
+        let contactTypeElement = getContactTypeElement(`contactType_${length + 1}`, '')
+        let fullContactElement = getFullContactElement(contactElement, contactTypeElement)
 
-        $('#contactContainer').append(element)
+        $('#contactContainer').append(fullContactElement)
     })
 })
+
+function getEmailElement(name, value) {
+    return ` <div class="form-group">
+                <label for=${name}>Email</label>
+                <input type="email" maxlength="30" class="form-control" id=${name} name=${name}
+                    placeholder="john@doe.com" value=${value}>
+            </div>`
+}
+
+function getContactElement(name, value) {
+    return ` <div class="form-group">
+                <label for=${name}>Contact</label>
+                <input type="number" maxlength="13" class="form-control" id=${name}
+                    name=${name} placeholder="+91 98765 43210" required value=${value}>
+            </div>`
+}
+
+function getContactTypeElement(name, value) {
+    return `<div class="form-group">
+                <label for=${name}>Contact type</label>
+                <select class="form-control" id=${name} name=${name} value=${value}>
+                    <option>Home</option>
+                    <option>Office</option>
+                    <option>Personal</option>
+                </select>
+            </div>`
+}
+
+function getFullContactElement(contactElement, contactTypeElement) {
+    return `<div class="form-row">
+            <div class="col">
+                ${contactElement}
+            </div>
+            <div class="col">
+                ${contactTypeElement}
+            </div>
+        </div>`
+}
