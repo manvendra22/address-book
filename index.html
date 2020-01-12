@@ -32,7 +32,7 @@
         <div class="app-container">
             <div class="mb-3 search-container">
                 <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
-                    oninput="searchData(this.value)" id="search">
+                    oninput="searchData(this.value)">
             </div>
             <div class="mb-3 button-container">
                 <button class="btn btn-success" onclick="addContact()">Add Contact</button>
@@ -47,17 +47,17 @@
             </div>
             <div class="list-container">
                 <!-- <div class="list-item">
-                    <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
+                    <img src="/icons/cross.svg" class="icon cross" alt="delete">
                     <div class="data-container">
                         <p>John Doe</p>
                         <p>+91 98765 43210 (3 more)</p>
                         <p>john.doe@gmail.com (1 more)</p>
                     </div>
                     <div class="icons-container">
-                        <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
-                        <img src="/icons/edit.svg" class="icon edit" alt="" srcset="" data-id=${id}>
-                        <a href="mailto:abc@def.com"><img src="/icons/email.svg" class="icon" alt="" srcset=""></a>
-                        <a href="tel:123"><img src="/icons/call.svg" class="icon" alt="" srcset=""></a>
+                        <img src="/icons/eye.svg" class="icon eye" alt="view">
+                        <img src="/icons/edit.svg" class="icon edit" alt="edit">
+                        <a href="mailto:john.doe@gmail.com"><img src="/icons/email.svg" class="icon" alt="mail"></a>
+                        <a href="tel:+91 98765 43210"><img src="/icons/call.svg" class="icon" alt="call"></a>
                     </div>
                 </div> -->
             </div>
@@ -152,25 +152,25 @@
                         <div class="row">
                             <div class="col">
                                 <span><b>Name:</b></span>
-                                <span id="view_name">John Doe</span>
+                                <span id="viewName">John Doe</span>
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col" id="view_contact_container">
+                            <div class="col" id="viewContactContainer">
                                 <div><b>Contact:</b></div>
                             </div>
-                            <div class="col" id="view_contact_type_container">
+                            <div class="col" id="viewContactTypeContainer">
                                 <div><b>Contact Type:</b></div>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
                                 <span><b>DOB:</b></span>
-                                <span id="view_dob"></span>
+                                <span id="viewDob"></span>
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col" id="view_email_container">
+                            <div class="col" id="viewEmailContainer">
                                 <div><b>Email:</b></div>
                             </div>
                         </div>

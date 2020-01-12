@@ -35,17 +35,17 @@ function showContacts(newData = contactData) {
         let contactsLength = contacts.length / 2 - 1
 
         let element = `<div class="list-item">
-                            <img src="/icons/cross.svg" class="icon cross" alt="" srcset="" data-id=${id}>
+                            <img src="/icons/cross.svg" class="icon cross" alt="delete" data-id=${id}>
                             <div class="data-container">
                                 <p>${firstName} ${lastName}</p>
                                 <p>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</p>
                                 ${emails[0].value ? `<p>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}  </p>` : ''} 
                             </div>
                             <div class="icons-container">
-                                <img src="/icons/eye.svg" class="icon eye" alt="" srcset="" data-id=${id}>
-                                <img src="/icons/edit.svg" class="icon edit" alt="" srcset="" data-id=${id}>
-                                 ${emails[0].value ? `<a href="mailto:${emails[0].value}"><img src="/icons/email.svg" class="icon" alt="" srcset=""></a>` : ''}
-                                <a href="tel:${contacts[0].value}"><img src="/icons/call.svg" class="icon" alt="" srcset=""></a>
+                                <img src="/icons/eye.svg" class="icon eye" alt="view" data-id=${id}>
+                                <img src="/icons/edit.svg" class="icon edit" alt="edit" data-id=${id}>
+                                 ${emails[0].value ? `<a href="mailto:${emails[0].value}"><img src="/icons/email.svg" class="icon" alt="mail"></a>` : ''}
+                                <a href="tel:${contacts[0].value}"><img src="/icons/call.svg" class="icon" alt="call"></a>
                             </div>
                         </div>`
 
@@ -60,23 +60,23 @@ function fillDataInViewModal(data) {
 
     $('#contactViewModal').modal('show');
 
-    $("#view_name").text(`${firstName} ${lastName}`);
-    $("#view_dob").text(dob);
+    $("#viewName").text(`${firstName} ${lastName}`);
+    $("#viewDob").text(dob);
 
     contacts.forEach(contact => {
         if (contact.name.includes('contactType')) {
             let contactTypeElement = `<div>${contact.value}</div>`
-            $('#view_contact_type_container').append(contactTypeElement)
+            $('#viewContactTypeContainer').append(contactTypeElement)
         } else {
             let contactElement = `<div>${contact.value}</div>`
-            $('#view_contact_container').append(contactElement)
+            $('#viewContactContainer').append(contactElement)
         }
     })
 
     emails.forEach(email => {
         let elementEmail = `<div>${email.value}</div>`
 
-        $('#view_email_container').append(elementEmail)
+        $('#viewEmailContainer').append(elementEmail)
     })
 
 }
@@ -179,9 +179,9 @@ function sortData(type) {
 $(document).ready(function () {
 
     $('#contactViewModal').on('hide.bs.modal', function (e) {
-        $('#view_contact_container').html('<div><b>Contact:</b></div>')
-        $('#view_contact_type_container').html('<div><b>Contact Type:</b></div>')
-        $('#view_email_container').html('<div><b>Email:</b></div>')
+        $('#viewContactContainer').html('<div><b>Contact:</b></div>')
+        $('#viewContactTypeContainer').html('<div><b>Contact Type:</b></div>')
+        $('#viewEmailContainer').html('<div><b>Email:</b></div>')
     })
 
     $(document).on('click', '.cross', function (e) {
