@@ -133,9 +133,8 @@ function searchData(value) {
 
     let newData = contactData.filter(function (data) {
         let fullName = `${data.doc.firstName} ${data.doc.lastName}`
-        fullName = fullName.toLowerCase()
 
-        return fullName.includes(value)
+        return fullName.toLowerCase().includes(value.toLowerCase())
     })
 
     showContacts(newData)
