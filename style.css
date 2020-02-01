@@ -71,6 +71,10 @@ input {
     cursor: pointer;
 }
 
+.error {
+    color: red;
+}
+
 /* media-queries */
 
 @media only screen and (max-width: 900px) {

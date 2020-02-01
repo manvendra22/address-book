@@ -126,6 +126,22 @@ function addContact() {
     $('#emailContainer').html(emailElement)
 
     $('#contactContainer').html(fullContactElement)
+
+
+    $('.contact').each(function () {
+        $(this).rules("add",
+            {
+                required: true,
+                maxlength: 13,
+            });
+    });
+
+    $('.email').each(function () {
+        $(this).rules("add",
+            {
+                maxlength: 30,
+            });
+    });
 }
 
 
@@ -201,17 +217,33 @@ $(document).ready(function () {
         });
     })
 
-    $('form').submit(function (e) {
-        let id = $(this).attr("data-id")
+    $("#contact-form").validate({
+        rules: {
+            firstName: {
+                required: true,
+                maxlength: 25
+            },
+            lastName: {
+                required: true,
+                maxlength: 25
+            },
+        },
+        submitHandler: function (form) {
+            // form.submit();
+            submitForm()
+        }
+    });
 
-        e.preventDefault();
+    // $('#contact-form').submit(function (e) {
+    function submitForm() {
+        // e.preventDefault();
+
+        let id = $(this).attr("data-id")
 
         $('#contactFormModal').modal('hide');
 
         let formData = $('form').serializeArray();
         let jsonData = {}, contacts = [], emails = [];
-
-        console.log('formData ', formData)
 
         formData.forEach(data => {
             if (data['name'].includes('contact')) {
@@ -239,7 +271,7 @@ $(document).ready(function () {
         }).catch(function (err) {
             console.log(err);
         });
-    });
+    }
 
     $('#addAnotherEmail').click(function () {
         let emailContainer = $('#emailContainer').children()
@@ -285,7 +317,7 @@ function getListElement(firstName, lastName, contacts, emails, id) {
 function getEmailElement(name, value) {
     return ` <div class="form-group">
                 <label for=${name}>Email</label>
-                <input type="email" maxlength="30" class="form-control" id=${name} name=${name}
+                <input type="email" class="form-control email" id=${name} name=${name}
                     placeholder="john@doe.com" value=${value}>
             </div>`
 }
@@ -293,8 +325,8 @@ function getEmailElement(name, value) {
 function getContactElement(name, value) {
     return ` <div class="form-group">
                 <label for=${name}>Contact</label>
-                <input type="number" maxlength="13" class="form-control" id=${name}
-                    name=${name} placeholder="+91 98765 43210" required value=${value}>
+                <input type="number" class="form-control contact" id=${name}
+                    name=${name} placeholder="+91 98765 43210" value=${value}>
             </div>`
 }
 

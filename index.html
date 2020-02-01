@@ -22,6 +22,9 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.1.1/dist/pouchdb.min.js"></script>
 
     <script src="script.js"></script>
@@ -75,30 +78,30 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="contact-form">
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" maxlength="25" class="form-control" id="firstName"
-                                            name="firstName" placeholder="Enter first name" required>
+                                        <input type="text" class="form-control" id="firstName" name="firstName"
+                                            placeholder="Enter first name">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" maxlength="25" class="form-control" id="lastName"
-                                            name="lastName" placeholder="Enter last name" required>
+                                        <input type="text" class="form-control" id="lastName" name="lastName"
+                                            placeholder="Enter last name">
                                     </div>
                                 </div>
                             </div>
                             <div id="contactContainer">
-                                <div class="form-row">
+                                <!-- <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="contact_1">Contact</label>
-                                            <input type="number" maxlength="13" class="form-control" id="contact_1"
-                                                name="contact_1" placeholder="+91 98765 43210" required>
+                                            <input type="number" class="form-control contact" id="contact_1" name="contact_1"
+                                                placeholder="+91 98765 43210">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -111,7 +114,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <span class="badge badge-pill badge-info mb-3" id="addAnotherContact">Add another
                                 contact</span>
@@ -121,11 +124,11 @@
                                     name="dob" placeholder="01/01/1990">
                             </div>
                             <div id="emailContainer">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="email_1">Email</label>
-                                    <input type="email" maxlength="30" class="form-control" id="email_1" name="email_1"
+                                    <input type="email" class="form-control email" id="email_1" name="email_1"
                                         placeholder="john@doe.com">
-                                </div>
+                                </div> -->
                             </div>
                             <span class="badge badge-pill badge-info mb-3" id="addAnotherEmail">Add another
                                 email</span>
