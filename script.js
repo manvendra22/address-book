@@ -230,15 +230,15 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             // form.submit();
-            submitForm()
+            submitForm(form)
         }
     });
 
     // $('#contact-form').submit(function (e) {
-    function submitForm() {
+    function submitForm(form) {
         // e.preventDefault();
 
-        let id = $(this).attr("data-id")
+        let id = $(form).attr("data-id")
 
         $('#contactFormModal').modal('hide');
 
@@ -259,7 +259,7 @@ $(document).ready(function () {
         jsonData.emails = emails;
 
         if (id) {
-            let rev = $(this).attr("data-rev")
+            let rev = $(form).attr("data-rev")
             jsonData._id = id
             jsonData._rev = rev
         } else {
@@ -354,4 +354,14 @@ function getFullContactElement(contactElement, contactTypeElement) {
                 ${contactTypeElement}
             </div>
         </div>`
+}
+
+function getElement(selector) {
+    return document.querySelector(selector);
+}
+
+function createElement(type, classname) {
+    let element = document.createElement(type);
+
+    return element;
 }
