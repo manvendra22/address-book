@@ -1,10 +1,6 @@
 body {
-    background-color: #f8fbff;
+    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
     font-size: 16px;
-}
-
-p {
-    margin: 0;
 }
 
 input {
@@ -16,32 +12,56 @@ input {
 }
 
 .app {
-    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
-.app-container {
-    margin-top: 10vh;
-    width: 40vw;
+.header {
+    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 180px;
+    padding: 20px;
 }
 
-.search-container {}
+.content {
+    margin-top: 200px;
+    width: 50%;
+    padding: 20px;
+}
 
-.button-container {
-    text-align: center;
+.search-bar {
+    width: 50%;
+}
+
+.sort-container {
+    width: 50%;
 }
 
 .list-item {
-    border: 2px solid #757575;
     border-radius: 10px;
-    background-color: #D9FFF5;
-    padding: 10px;
+    background-color: white;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1),
+        0 0 0 1px rgba(10, 10, 10, .02);
+    padding: 20px;
     margin-bottom: 10px;
     display: flex;
     position: relative;
+}
+
+.main-text {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.sub-text {
+    color: gray;
+    font-size: 14px;
 }
 
 .data-container {
@@ -75,7 +95,6 @@ input {
     color: red;
 }
 
-/* media-queries */
 
 @media only screen and (max-width: 900px) {
     body {

@@ -32,29 +32,26 @@
 
 <body>
     <div class="app">
-        <div class="app-container">
-            <div class="mb-3 search-container">
-                <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
-                    oninput="searchData(this.value)">
-            </div>
-            <div class="mb-3 button-container">
-                <button class="btn btn-success" onclick="addContact()">Add Contact</button>
-            </div>
-            <div class="mb-3 sort-container">
-                <b>SORT :</b>
+        <div class="header">
+            <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
+                oninput="searchData(this.value)">
+            <button class="btn btn-success" onclick="addContact()">Add Contact</button>
+            <div class="sort-container">
                 <span class="badge badge-pill badge-info" onclick="sortData('firstName')">By First
                     name</span>
                 <span class="badge badge-pill badge-info" onclick="sortData('lastName')">By Last
                     name</span>
                 <span class="badge badge-pill badge-info" onclick="sortData('dob')">By DOB</span>
             </div>
+        </div>
+        <div class="content">
             <div class="list-container">
                 <!-- <div class="list-item">
                     <img src="/icons/cross.svg" class="icon cross" alt="delete">
                     <div class="data-container">
-                        <p class='text-capitalize'>John Doe</p>
-                        <p>+91 98765 43210 (3 more)</p>
-                        <p>john.doe@gmail.com (1 more)</p>
+                        <div class='main-text'>John Doe</div>
+                        <div class='sub-text'>+91 98765 43210 (3 more)</div>
+                        <div class='sub-text'>john.doe@gmail.com (1 more)</div>
                     </div>
                     <div class="icons-container">
                         <img src="/icons/eye.svg" class="icon eye" alt="view">

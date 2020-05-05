@@ -301,9 +301,9 @@ function getListElement(firstName, lastName, contacts, emails, id) {
     return `<div class="list-item">
         <img src="/icons/cross.svg" class="icon cross" alt="delete" data-id=${id}>
         <div class="data-container">
-            <p class="text-capitalize">${firstName} ${lastName}</p>
-            <p>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</p>
-            ${emails[0].value ? `<p>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}  </p>` : ''} 
+            <div class="main-text">${firstName} ${lastName}</div>
+            <div class="sub-text">${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</div>
+            ${emails[0].value ? `<div class="sub-text">${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}  </div>` : ''} 
         </div>
         <div class="icons-container">
             <img src="/icons/eye.svg" class="icon eye" alt="view" data-id=${id}>
