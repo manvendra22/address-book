@@ -46,7 +46,7 @@ input {
 .list-item {
     border-radius: 10px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px 0px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 10px 15px 0px;
     padding: 20px;
     margin-bottom: 20px;
     display: flex;
@@ -55,7 +55,8 @@ input {
 }
 
 .list-item:hover {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px 0px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px 5px;
+    transform: scale(1.1);
 }
 
 .main-text {
