@@ -55,6 +55,7 @@ input {
 }
 
 .sort-container {
+    font-size: 12px;
     width: 50%;
 }
 
@@ -113,12 +114,27 @@ input {
     right: -19px;
 }
 
-.badge {
+.pin {
+    display: inline-block;
+    background: #48a3b8;
+    color: white;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 2px;
     cursor: pointer;
 }
 
-.badge:hover {
-    filter: brightness(90%);
+.pin:hover {
+    background: #4092A5;
+}
+
+.pin-second {
+    background: #6A6E70;
+}
+
+.pin-second:hover {
+    background: #5A6268;
 }
 
 .error {
