@@ -355,13 +355,3 @@ function getFullContactElement(contactElement, contactTypeElement) {
             </div>
         </div>`
 }
-
-function getElement(selector) {
-    return document.querySelector(selector);
-}
-
-function createElement(type, classname) {
-    let element = document.createElement(type);
-
-    return element;
-}
