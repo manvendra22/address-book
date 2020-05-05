@@ -25,14 +25,14 @@ input {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 180px;
-    padding: 20px;
+    height: 200px;
+    padding: 30px;
 }
 
 .git-link {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
 }
 
 .icon-git {
@@ -45,7 +45,7 @@ input {
 }
 
 .content {
-    margin-top: 200px;
+    margin-top: 220px;
     width: 50%;
     padding: 20px;
 }
