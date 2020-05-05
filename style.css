@@ -56,7 +56,7 @@ input {
 
 .list-item:hover {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px 5px;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .main-text {
