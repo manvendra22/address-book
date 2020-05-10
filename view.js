@@ -1,54 +1,3 @@
-class EventEmitter {
-    constructor() {
-        this._events = {}
-    }
-
-    on(evt, listener) {
-        (this._events[evt] || (this._events[evt] = [])).push(listener)
-    }
-
-    emit(evt, arg) {
-        (this._events[evt] || []).slice().forEach(lstnr => lstnr(arg))
-    }
-}
-
-class Modal extends EventEmitter {
-    constructor() {
-        super();
-
-        this.contacts = [];
-        // {
-        //     first_name: "John",
-        //     last_name: "Doe",
-        //     emails: ["john@doe.com"],
-        //     contacts: [{ number: "1234567890", type: "Home", country: "+91" }],
-        //     dob: "01/01/1990",
-        //     _id: "1",
-        // }
-    }
-
-    addContact(newContact) {
-        let index = this.contacts.findIndex(contact => contact._id === newContact._id)
-
-        if (index === -1) {
-            this.contacts.push(newContact)
-        } else {
-            this.contacts = this.contacts.map(contact => {
-                if (contact._id === newContact._id) {
-                    return newContact;
-                }
-                return contact;
-            });
-        }
-
-        this.emit('listUpdated', this.contacts)
-    }
-
-    deleteContact(id) {
-        this.contacts = this._contacts.filter(contact => contact.id !== id);
-    }
-}
-
 class View extends EventEmitter {
     constructor() {
         super()
@@ -58,12 +7,24 @@ class View extends EventEmitter {
         this.addAnotherContact = this.addAnotherContact.bind(this)
         this.resetForm = this.resetForm.bind(this)
         this.renderList = this.renderList.bind(this)
+        this.handleView = this.handleView.bind(this)
+        this.handleEdit = this.handleEdit.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
+        this.fillDataInEditModal = this.fillDataInEditModal.bind(this)
+        this.fillDataInViewModal = this.fillDataInViewModal.bind(this)
 
+        this.addInteractionHandlers()
+    }
+
+    addInteractionHandlers() {
         $('#addContactBtn').click(this.handleAddContactBtn)
         $('#contactForm').submit(this.handleFormSubmit)
         $('#addAnotherEmail').click(this.addAnotherEmail)
         $('#addAnotherContact').click(this.addAnotherContact)
         $('#contactFormModal').on('hide.bs.modal', this.resetForm)
+        $('#listContainer').on('click', '.eye', this.handleView)
+        $('#listContainer').on('click', '.edit', this.handleEdit)
+        $('#listContainer').on('click', '.cross', this.handleDelete)
     }
 
     handleAddContactBtn() {
@@ -103,6 +64,112 @@ class View extends EventEmitter {
         this.emit('formSubmit', jsonData)
     }
 
+    renderList(contacts) {
+        let elements = ''
+
+        contacts.forEach(contact => {
+            const { _id, firstName, lastName, contacts, emails } = contact
+
+            let element = this.getListElement(firstName, lastName, contacts, emails, _id)
+
+            elements += element
+        })
+
+        $('#listContainer').html(elements)
+    }
+
+    handleDelete(e) {
+        let id = $(e.target).attr("data-id")
+        this.emit('deleteContact', id)
+    }
+
+    handleView(e) {
+        let id = $(e.target).attr("data-id")
+        this.emit('viewContact', id)
+    }
+
+    handleEdit(e) {
+        let id = $(e.target).attr("data-id")
+        this.emit('editContact', id)
+    }
+
+    fillDataInViewModal(data) {
+        const { firstName, lastName, dob, contacts, emails } = data
+
+        $('#contactViewModal').modal('show');
+
+        $("#viewName").text(`${firstName} ${lastName}`);
+        $("#viewDob").text(dob);
+
+        contacts.forEach(contact => {
+            if (contact.name.includes('contactType')) {
+                let contactTypeElement = `<div>${contact.value}</div>`
+                $('#viewContactTypeContainer').append(contactTypeElement)
+            } else {
+                let contactElement = `<div>${contact.value}</div>`
+                $('#viewContactContainer').append(contactElement)
+            }
+        })
+
+        emails.forEach(email => {
+            let elementEmail = `<div>${email.value}</div>`
+
+            $('#viewEmailContainer').append(elementEmail)
+        })
+
+    }
+
+    fillDataInEditModal(data) {
+        const { firstName, lastName, contacts, dob, emails, _id, _rev } = data
+
+        $('#contactFormModal').modal('show');
+        $('#contactContainer').html(null)
+        $('#emailContainer').html(null)
+        $("#addDataBtn").text('Update')
+
+        $("#contactForm").attr("data-id", _id);
+        $("#contactForm").attr("data-rev", _rev);
+
+        $("#firstName").val(firstName);
+        $("#lastName").val(lastName);
+        $("#dob").val(dob);
+
+        let contactElement = null, contactTypeElement = null;
+
+        contacts.forEach(contact => {
+            if (contact.name.includes('contactType')) {
+                contactTypeElement = this.getContactTypeElement(contact.name, contact.value)
+            } else {
+                contactElement = this.getContactElement(contact.name, contact.value)
+            }
+
+            if (contactTypeElement && contactElement) {
+                let fullContactElement = this.getFullContactElement(contactElement, contactTypeElement)
+                $('#contactContainer').append(fullContactElement)
+                contactTypeElement = null, contactElement = null
+            }
+        })
+
+        emails.forEach(email => {
+            let emailElement = this.getEmailElement(email.name, email.value)
+            $('#emailContainer').append(emailElement)
+        })
+    }
+
+    resetForm() {
+        $("form").trigger("reset");
+        $("form").removeAttr("data-id");
+        $("#addDataBtn").text('Add')
+
+        let emailElement = this.getEmailElement('email_1', '')
+        let contactElement = this.getContactElement('contact_1', '')
+        let contactTypeElement = this.getContactTypeElement('contactType_1', '')
+        let fullContactElement = this.getFullContactElement(contactElement, contactTypeElement)
+
+        $('#emailContainer').html(emailElement)
+        $('#contactContainer').html(fullContactElement)
+    }
+
     addAnotherEmail() {
         let emailContainer = $('#emailContainer').children()
         let length = emailContainer.length
@@ -121,36 +188,6 @@ class View extends EventEmitter {
         let fullContactElement = this.getFullContactElement(contactElement, contactTypeElement)
 
         $('#contactContainer').append(fullContactElement)
-    }
-
-    resetForm() {
-        $("form").trigger("reset");
-        $("form").removeAttr("data-id");
-        $("#addDataBtn").text('Add')
-
-        let emailElement = this.getEmailElement('email_1', '')
-        let contactElement = this.getContactElement('contact_1', '')
-        let contactTypeElement = this.getContactTypeElement('contactType_1', '')
-        let fullContactElement = this.getFullContactElement(contactElement, contactTypeElement)
-
-        $('#emailContainer').html(emailElement)
-        $('#contactContainer').html(fullContactElement)
-    }
-
-    renderList(contacts) {
-        let elements = ''
-
-        contacts.forEach(contact => {
-            // const { id, doc } = contact
-            // const { firstName, lastName, contacts, emails } = doc
-            const { _id, firstName, lastName, contacts, emails } = contact
-
-            let element = this.getListElement(firstName, lastName, contacts, emails, _id)
-
-            elements += element
-        })
-
-        $('.list-container').html(elements)
     }
 
     getListElement(firstName, lastName, contacts, emails, id) {
@@ -215,26 +252,3 @@ class View extends EventEmitter {
         </div>`
     }
 }
-
-class Controller {
-    constructor(modal, view) {
-        this.modal = modal
-        this.view = view
-
-        this.handleFormSubmit = this.handleFormSubmit.bind(this)
-        this.handleListUpdate = this.handleListUpdate.bind(this)
-
-        view.on('formSubmit', this.handleFormSubmit)
-        modal.on('listUpdated', this.handleListUpdate)
-    }
-
-    handleFormSubmit(data) {
-        this.modal.addContact(data)
-    }
-
-    handleListUpdate(data) {
-        this.view.renderList(data)
-    }
-}
-
-let App = new Controller(new Modal(), new View())

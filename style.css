@@ -110,8 +110,8 @@ input {
 
 .cross {
     position: absolute;
-    top: -13px;
-    right: -19px;
+    top: -12px;
+    right: -18px;
 }
 
 .pin {
@@ -162,7 +162,7 @@ input {
 
     .cross {
         top: -9px;
-        right: -12px;
+        right: -14px;
     }
 }
 
