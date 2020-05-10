@@ -5,7 +5,7 @@ class View extends EventEmitter {
         this.handleFormSubmit = this.handleFormSubmit.bind(this)
         this.addAnotherEmail = this.addAnotherEmail.bind(this)
         this.addAnotherContact = this.addAnotherContact.bind(this)
-        this.resetForm = this.resetForm.bind(this)
+        this.resetFormModal = this.resetFormModal.bind(this)
         this.renderList = this.renderList.bind(this)
         this.handleView = this.handleView.bind(this)
         this.handleEdit = this.handleEdit.bind(this)
@@ -21,7 +21,8 @@ class View extends EventEmitter {
         $('#contactForm').submit(this.handleFormSubmit)
         $('#addAnotherEmail').click(this.addAnotherEmail)
         $('#addAnotherContact').click(this.addAnotherContact)
-        $('#contactFormModal').on('hide.bs.modal', this.resetForm)
+        $('#contactFormModal').on('hide.bs.modal', this.resetFormModal)
+        $('#contactViewModal').on('hide.bs.modal', this.resetViewModal)
         $('#listContainer').on('click', '.eye', this.handleView)
         $('#listContainer').on('click', '.edit', this.handleEdit)
         $('#listContainer').on('click', '.cross', this.handleDelete)
@@ -166,7 +167,7 @@ class View extends EventEmitter {
         })
     }
 
-    resetForm() {
+    resetFormModal() {
         $("form").trigger("reset");
         $("form").removeAttr("data-id");
         $("#addDataBtn").text('Add')
@@ -178,6 +179,12 @@ class View extends EventEmitter {
 
         $('#emailContainer').html(emailElement)
         $('#contactContainer').html(fullContactElement)
+    }
+
+    resetViewModal() {
+        $('#viewContactContainer').html('<div><b>Contact:</b></div>')
+        $('#viewContactTypeContainer').html('<div><b>Contact Type:</b></div>')
+        $('#viewEmailContainer').html('<div><b>Email:</b></div>')
     }
 
     addAnotherEmail() {
