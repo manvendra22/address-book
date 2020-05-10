@@ -25,6 +25,7 @@ class View extends EventEmitter {
         $('#listContainer').on('click', '.eye', this.handleView)
         $('#listContainer').on('click', '.edit', this.handleEdit)
         $('#listContainer').on('click', '.cross', this.handleDelete)
+        $('input[name="search-input"]').on('input', this.searchData)
     }
 
     handleAddContactBtn() {
@@ -91,6 +92,15 @@ class View extends EventEmitter {
     handleEdit(e) {
         let id = $(e.target).attr("data-id")
         this.emit('editContact', id)
+    }
+
+    searchData(e) {
+
+    }
+
+    sortData(e) {
+        // onclick = "sortData('firstName')
+        // type = firstName / lastName / dob
     }
 
     fillDataInViewModal(data) {

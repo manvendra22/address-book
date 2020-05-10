@@ -42,4 +42,32 @@ class Modal extends EventEmitter {
         this.contacts = this.contacts.filter(contact => contact._id !== id);
         this.emit('listUpdated', this.contacts)
     }
+
+    searchContact(value) {
+        let newData = this.contacts.filter(function (contact) {
+            let fullName = `${contact.firstName} ${contact.lastName}`
+
+            return fullName.toLowerCase().includes(value.toLowerCase())
+        })
+        this.emit('listUpdated', newData)
+    }
+
+    sortContact(type) {
+        let newData = this.contacts.sort(function (a, b) {
+
+            let x = a[type], y = b[type]
+
+            if (type == 'dob') {
+                x = new Date(x)
+                y = new Date(y)
+            }
+
+            if (x < y) { return -1; }
+            if (x > y) { return 1; }
+            return 0;
+        })
+
+        this.emit('listUpdated', newData)
+    }
 }
+

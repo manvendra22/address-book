@@ -22,8 +22,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script> -->
 
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.1.1/dist/pouchdb.min.js"></script>
 
@@ -36,16 +36,13 @@
             <a target="_blank" href="https://github.com/manvendra22/address-book" class="git-link">
                 <img src="./github.svg" alt="github-logo" class="icon-git" />
             </a>
-            <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
-                oninput="searchData(this.value)">
+            <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input">
             <button class="btn btn-success" id="addContactBtn">Add Contact</button>
-            <div class="sort-container">
-                <span class="pin" onclick="sortData('firstName')">By First
-                    name</span>
-                <span class="pin" onclick="sortData('lastName')">By Last
-                    name</span>
-                <span class="pin" onclick="sortData('dob')">By DOB</span>
-            </div>
+            <!-- <div class="sort-container">
+                <span class="pin">By First name</span>
+                <span class="pin">By Last name</span>
+                <span class="pin">By DOB</span>
+            </div> -->
         </div>
         <div class="content">
             <div id="listContainer">
