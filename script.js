@@ -77,7 +77,7 @@ function fillDataInEditModal(data) {
     $("#firstName").val(firstName);
     $("#lastName").val(lastName);
     $("#dob").val(dob);
-    $("#addData").text('Update')
+    $("#addDataBtn").text('Update')
 
     let contactElement = null, contactTypeElement = null;
 
@@ -113,7 +113,7 @@ function addContact() {
     $("form").trigger("reset");
 
     $("form").removeAttr("data-id");
-    $("#addData").text('Add')
+    $("#addDataBtn").text('Add')
 
     $('#contactFormModal').modal('show');
 
@@ -176,6 +176,7 @@ function sortData(type) {
 }
 
 $(document).ready(function () {
+    $('#addContactBtn').click(addContact)
 
     $('#contactViewModal').on('hide.bs.modal', function (e) {
         $('#viewContactContainer').html('<div><b>Contact:</b></div>')
@@ -217,7 +218,7 @@ $(document).ready(function () {
         });
     })
 
-    $("#contact-form").validate({
+    $("#contactForm").validate({
         rules: {
             firstName: {
                 required: true,
@@ -234,7 +235,7 @@ $(document).ready(function () {
         }
     });
 
-    // $('#contact-form').submit(function (e) {
+    // $('#contactForm').submit(function (e) {
     function submitForm(form) {
         // e.preventDefault();
 

@@ -27,8 +27,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.1.1/dist/pouchdb.min.js"></script>
 
-    <script src="script.js"></script>
-    <script src="script2.js"></script>
+    <!-- <script src="script.js"></script> -->
 </head>
 
 <body>
@@ -39,7 +38,7 @@
             </a>
             <input type="text" placeholder="Search contacts" class="form-control search-bar" name="search-input"
                 oninput="searchData(this.value)">
-            <button class="btn btn-success" onclick="addContact()">Add Contact</button>
+            <button class="btn btn-success" id="addContactBtn">Add Contact</button>
             <div class="sort-container">
                 <span class="pin" onclick="sortData('firstName')">By First
                     name</span>
@@ -79,7 +78,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="contact-form">
+                        <form id="contactForm">
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
@@ -97,12 +96,12 @@
                                 </div>
                             </div>
                             <div id="contactContainer">
-                                <!-- <div class="form-row">
+                                <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="contact_1">Contact</label>
-                                            <input type="number" class="form-control contact" id="contact_1" name="contact_1"
-                                                placeholder="+91 98765 43210">
+                                            <input type="number" class="form-control contact" id="contact_1"
+                                                name="contact_1" placeholder="+91 98765 43210">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -115,7 +114,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <span class="pin pin-second mb-3" id="addAnotherContact">Add another
                                 contact</span>
@@ -125,17 +124,17 @@
                                     name="dob" placeholder="01/01/1990">
                             </div>
                             <div id="emailContainer">
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label for="email_1">Email</label>
                                     <input type="email" class="form-control email" id="email_1" name="email_1"
                                         placeholder="john@doe.com">
-                                </div> -->
+                                </div>
                             </div>
                             <span class="pin pin-second mb-3" id="addAnotherEmail">Add another
                                 email</span>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" id="addData">Add</button>
+                                <button type="submit" class="btn btn-primary" id="addDataBtn">Add</button>
                             </div>
                         </form>
                     </div>
@@ -183,6 +182,7 @@
             </div>
         </div>
     </div>
+    <script src="script_new.js"></script>
 </body>
 
 </html>
