@@ -71,3 +71,28 @@ class Modal extends EventEmitter {
     }
 }
 
+// let db = new PouchDB('contacts');
+
+// if (db) {
+//     fetchContacts()
+// }
+
+// db.changes({
+//     since: 'now',
+//     live: true
+// }).on('change', fetchContacts);
+
+// let contactData = []
+
+// function fetchContacts() {
+//     db.allDocs({
+//         include_docs: true,
+//         descending: true
+//     }).then(function (result) {
+//         console.log('Fetched ', result)
+//         contactData = result.rows
+//         showContacts()
+//     }).catch(function (err) {
+//         console.log(err);
+//     });
+// }

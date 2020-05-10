@@ -96,12 +96,15 @@ class View extends EventEmitter {
     }
 
     searchData(e) {
-
+        console.log(e.target.value)
     }
 
+    /*
+        sort by type:
+        firstName / lastName / dob
+    */
     sortData(e) {
-        // onclick = "sortData('firstName')
-        // type = firstName / lastName / dob
+        console.log(e.target)
     }
 
     fillDataInViewModal(data) {
@@ -269,3 +272,37 @@ class View extends EventEmitter {
         </div>`
     }
 }
+
+// $("#contactForm").validate({
+//     rules: {
+//         firstName: {
+//             required: true,
+//             maxlength: 25
+//         },
+//         lastName: {
+//             required: true,
+//             maxlength: 25
+//         },
+//     },
+//     submitHandler: function (form) {
+//         // form.submit();
+//         submitForm(form)
+//     }
+// });
+
+// Rules while addContact
+
+// $('.contact').each(function () {
+//     $(this).rules("add",
+//         {
+//             required: true,
+//             maxlength: 13,
+//         });
+// });
+
+// $('.email').each(function () {
+//     $(this).rules("add",
+//         {
+//             maxlength: 30,
+//         });
+// });
