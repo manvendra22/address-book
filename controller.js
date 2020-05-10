@@ -21,7 +21,6 @@ class Controller {
         modal.on('listUpdated', this.handleListUpdate)
 
         modal.emit('listUpdated', modal.contacts)
-        console.log(this)
     }
 
     handleFormSubmit(data) {

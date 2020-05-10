@@ -34,7 +34,6 @@ class Modal extends EventEmitter {
     }
 
     getContact(id) {
-        console.log({ id })
         return this.contacts.find(contact => contact._id === id)
     }
 
@@ -57,8 +56,6 @@ class Modal extends EventEmitter {
     }
 
     sortContact(type) {
-        console.log({ type }, this.contacts)
-
         let newData = this.contacts.sort(function (a, b) {
 
             let x = a[type], y = b[type]
