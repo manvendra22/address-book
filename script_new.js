@@ -1,4 +1,4 @@
-class Event {
+class EventEmitter {
     constructor() {
         this._events = {}
     }
@@ -12,43 +12,52 @@ class Event {
     }
 }
 
-class Modal {
+class Modal extends EventEmitter {
     constructor() {
-        this._contacts = [
-            {
-                id: "1",
-                first_name: "John",
-                last_name: "Doe",
-                emails: ["john@doe.com"],
-                contacts: [{ number: "1234567890", type: "Home", country: "+91" }],
-                dob: "01/01/1990"
-            }
-        ];
+        super();
+
+        this.contacts = [];
+        // {
+        //     first_name: "John",
+        //     last_name: "Doe",
+        //     emails: ["john@doe.com"],
+        //     contacts: [{ number: "1234567890", type: "Home", country: "+91" }],
+        //     dob: "01/01/1990",
+        //     _id: "1",
+        // }
     }
 
-    addContact(contact) {
-        this._contacts.push(contact);
+    addContact(newContact) {
+        let index = this.contacts.findIndex(contact => contact._id === newContact._id)
+
+        if (index === -1) {
+            this.contacts.push(newContact)
+        } else {
+            this.contacts = this.contacts.map(contact => {
+                if (contact._id === newContact._id) {
+                    return newContact;
+                }
+                return contact;
+            });
+        }
+
+        this.emit('listUpdated', this.contacts)
     }
 
     deleteContact(id) {
-        this._contacts = this._contacts.filter(contact => contact.id !== id);
-    }
-
-    editContact(id, newContact) {
-        this._contacts = this._contacts.map(contact => {
-            if (contact.id === id) {
-                return newContact;
-            }
-            return contact;
-        });
+        this.contacts = this._contacts.filter(contact => contact.id !== id);
     }
 }
 
-class View {
+class View extends EventEmitter {
     constructor() {
+        super()
+
+        this.handleFormSubmit = this.handleFormSubmit.bind(this)
         this.addAnotherEmail = this.addAnotherEmail.bind(this)
         this.addAnotherContact = this.addAnotherContact.bind(this)
         this.resetForm = this.resetForm.bind(this)
+        this.renderList = this.renderList.bind(this)
 
         $('#addContactBtn').click(this.handleAddContactBtn)
         $('#contactForm').submit(this.handleFormSubmit)
@@ -63,11 +72,12 @@ class View {
 
     handleFormSubmit(e) {
         e.preventDefault()
-        $('#contactFormModal').modal('hide');
 
         let id = $('#contactForm').attr("data-id")
         let formData = $('#contactForm').serializeArray();
         let jsonData = {}, contacts = [], emails = [];
+
+        $('#contactFormModal').modal('hide');
 
         formData.forEach(data => {
             if (data['name'].includes('contact')) {
@@ -90,7 +100,7 @@ class View {
             jsonData._id = new Date().toISOString()
         }
 
-        console.log(jsonData)
+        this.emit('formSubmit', jsonData)
     }
 
     addAnotherEmail() {
@@ -125,6 +135,22 @@ class View {
 
         $('#emailContainer').html(emailElement)
         $('#contactContainer').html(fullContactElement)
+    }
+
+    renderList(contacts) {
+        let elements = ''
+
+        contacts.forEach(contact => {
+            // const { id, doc } = contact
+            // const { firstName, lastName, contacts, emails } = doc
+            const { _id, firstName, lastName, contacts, emails } = contact
+
+            let element = this.getListElement(firstName, lastName, contacts, emails, _id)
+
+            elements += element
+        })
+
+        $('.list-container').html(elements)
     }
 
     getListElement(firstName, lastName, contacts, emails, id) {
@@ -194,6 +220,20 @@ class Controller {
     constructor(modal, view) {
         this.modal = modal
         this.view = view
+
+        this.handleFormSubmit = this.handleFormSubmit.bind(this)
+        this.handleListUpdate = this.handleListUpdate.bind(this)
+
+        view.on('formSubmit', this.handleFormSubmit)
+        modal.on('listUpdated', this.handleListUpdate)
+    }
+
+    handleFormSubmit(data) {
+        this.modal.addContact(data)
+    }
+
+    handleListUpdate(data) {
+        this.view.renderList(data)
     }
 }
 
