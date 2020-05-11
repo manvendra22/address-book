@@ -19,8 +19,6 @@ class Controller {
         view.on('sortContact', this.handleSort)
 
         modal.on('listUpdated', this.handleListUpdate)
-
-        modal.emit('listUpdated', modal.contacts)
     }
 
     handleFormSubmit(data) {

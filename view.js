@@ -69,10 +69,10 @@ class View extends EventEmitter {
         this.emit('formSubmit', jsonData)
     }
 
-    renderList(contacts) {
+    renderList(contactsData) {
         let elements = ''
 
-        contacts.forEach(contact => {
+        contactsData.forEach(contact => {
             const { _id, firstName, lastName, contacts, emails } = contact.doc
 
             let element = this.getListElement(firstName, lastName, contacts, emails, _id)

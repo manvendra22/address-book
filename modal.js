@@ -5,7 +5,6 @@ class Modal extends EventEmitter {
 
         this.fetchContacts = this.fetchContacts.bind(this)
 
-        this.contacts = [];
         this.db = new PouchDB('contacts');
         this.initialzeDB()
     }
@@ -31,6 +30,7 @@ class Modal extends EventEmitter {
             descending: true
         }).then(result => {
             console.log('Fetched ', result)
+            this._contacts = result.rows
             this.emit('listUpdated', result.rows)
         }).catch(function (err) {
             console.log(err);
@@ -69,21 +69,21 @@ class Modal extends EventEmitter {
 
     searchContact(value) {
         if (value.length) {
-            let newData = this.contacts.filter(function (contact) {
-                let fullName = `${contact.firstName} ${contact.lastName}`
+            let newData = this._contacts.filter(function (contact) {
+                let fullName = `${contact?.doc.firstName} ${contact?.doc.lastName}`
 
                 return fullName.toLowerCase().includes(value.toLowerCase())
             })
             this.emit('listUpdated', newData)
         } else {
-            this.emit('listUpdated', this.contacts)
+            this.emit('listUpdated', this._contacts)
         }
     }
 
     sortContact(type) {
-        let newData = this.contacts.sort(function (a, b) {
+        let newData = this._contacts.sort(function (a, b) {
 
-            let x = a[type], y = b[type]
+            let x = a?.doc[type], y = b?.doc[type]
 
             if (type == 'dob') {
                 x = new Date(x)
