@@ -4,6 +4,11 @@
 > project started as a hiring challenge but I’m planning to implement
 > some more features to it to make it usable in day to day life.
 
+## Live links
+
+#### App
+https://contacts-book.netlify.app/
+
 ### Tech stack:
 - Javascript
 - JQuery
