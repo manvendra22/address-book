@@ -2,7 +2,7 @@
 
 > Contacts is a responsive web app to store and manage contacts. The
 > project started as a hiring challenge but I’m planning to implement
-> some more features to it to make it usable in day to day life.
+> some more features to it to make it usable in day to day life. It's developed following MVC and Publish-Subscribe design pattern in Javascript.
 
 ### Live link
 
@@ -10,7 +10,7 @@ https://contacts-book.netlify.app/
 
 ### Tech stack:
 
-- Javascript
+- Javascript-MVC
 - JQuery
 - Bootstrap
 - CSS
