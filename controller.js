@@ -28,13 +28,19 @@ class Controller {
     }
 
     handleEdit(id) {
-        let data = this.modal.getContact(id)
-        this.view.fillDataInEditModal(data)
+        let contact = this.modal.getContact(id)
+
+        contact.then(data => {
+            this.view.fillDataInEditModal(data)
+        })
     }
 
     handleView(id) {
-        let data = this.modal.getContact(id)
-        this.view.fillDataInViewModal(data)
+        let contact = this.modal.getContact(id)
+
+        contact.then(data => {
+            this.view.fillDataInViewModal(data)
+        })
     }
 
     handleDelete(id) {

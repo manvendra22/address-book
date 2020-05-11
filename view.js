@@ -59,7 +59,7 @@ class View extends EventEmitter {
         jsonData.emails = emails;
 
         if (id) {
-            let rev = $(form).attr("data-rev")
+            let rev = $('#contactForm').attr("data-rev")
             jsonData._id = id
             jsonData._rev = rev
         } else {
@@ -73,7 +73,7 @@ class View extends EventEmitter {
         let elements = ''
 
         contacts.forEach(contact => {
-            const { _id, firstName, lastName, contacts, emails } = contact
+            const { _id, firstName, lastName, contacts, emails } = contact.doc
 
             let element = this.getListElement(firstName, lastName, contacts, emails, _id)
 

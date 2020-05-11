@@ -3,43 +3,68 @@ class Modal extends EventEmitter {
     constructor() {
         super();
 
-        this.contacts = [];
-        this.addContact({
-            firstName: "John",
-            lastName: "Doe",
-            emails: [{ name: 'email_1', value: 'john@doe.com' }],
-            contacts: [{ name: "contact_1", value: "12345" }, { name: "contactType_1", value: "Home" }],
-            dob: "01/01/1990",
-            _id: "1",
-        })
+        this.fetchContacts = this.fetchContacts.bind(this)
 
-        this.deleteContact = this.deleteContact.bind(this)
+        this.contacts = [];
+        this.db = new PouchDB('contacts');
+        this.initialzeDB()
+    }
+
+    initialzeDB() {
+        if (this.db) {
+            this.fetchContacts()
+        }
+
+        this.db.changes({
+            since: 'now',
+            live: true
+        }).on('change', this.fetchContacts);
+    }
+
+    resetDB() {
+        this.db.destroy()
+    }
+
+    fetchContacts() {
+        this.db.allDocs({
+            include_docs: true,
+            descending: true
+        }).then(result => {
+            console.log('Fetched ', result)
+            this.emit('listUpdated', result.rows)
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
     addContact(newContact) {
-        let index = this.contacts.findIndex(contact => contact._id === newContact._id)
-
-        if (index === -1) {
-            this.contacts.push(newContact)
-        } else {
-            this.contacts = this.contacts.map(contact => {
-                if (contact._id === newContact._id) {
-                    return newContact;
-                }
-                return contact;
-            });
-        }
-
-        this.emit('listUpdated', this.contacts)
+        this.db.put(newContact).then(function (response) {
+            console.log('Added ', response);
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
     getContact(id) {
-        return this.contacts.find(contact => contact._id === id)
+        let contact = this.db.get(id).then(function (doc) {
+            console.log('Fetched ', doc)
+            return doc
+        }).catch(function (err) {
+            console.log(err);
+        });
+
+        return contact;
     }
 
     deleteContact(id) {
-        this.contacts = this.contacts.filter(contact => contact._id !== id);
-        this.emit('listUpdated', this.contacts)
+        this.db.get(id).then(doc => {
+            console.log("In Delete ", this)
+            return this.db.remove(doc);
+        }).then(function (result) {
+            console.log('Deleted ', result)
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
     searchContact(value) {
@@ -74,28 +99,11 @@ class Modal extends EventEmitter {
     }
 }
 
-// let db = new PouchDB('contacts');
-
-// if (db) {
-//     fetchContacts()
-// }
-
-// db.changes({
-//     since: 'now',
-//     live: true
-// }).on('change', fetchContacts);
-
-// let contactData = []
-
-// function fetchContacts() {
-//     db.allDocs({
-//         include_docs: true,
-//         descending: true
-//     }).then(function (result) {
-//         console.log('Fetched ', result)
-//         contactData = result.rows
-//         showContacts()
-//     }).catch(function (err) {
-//         console.log(err);
-//     });
-// }
+// this.addContact({
+//     firstName: "John",
+//     lastName: "Doe",
+//     emails: [{ name: 'email_1', value: 'john@doe.com' }],
+//     contacts: [{ name: "contact_1", value: "12345" }, { name: "contactType_1", value: "Home" }],
+//     dob: "01/01/1990",
+//     _id: "1",
+// })
