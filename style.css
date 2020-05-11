@@ -70,7 +70,7 @@ input {
     margin-bottom: 20px;
     display: flex;
     position: relative;
-    transition: all .2s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .list-item:hover {
@@ -108,7 +108,7 @@ input {
 }
 
 .icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .cross {
@@ -142,6 +142,15 @@ input {
 
 .error {
     color: red;
+}
+
+.person-details {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
+
+.details-header {
+    font-size: 14px;
 }
 
 

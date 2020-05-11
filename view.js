@@ -117,16 +117,16 @@ class View extends EventEmitter {
 
         contacts.forEach(contact => {
             if (contact.name.includes('contactType')) {
-                let contactTypeElement = `<div>${contact.value}</div>`
+                let contactTypeElement = `<div class="sub-text">${contact.value}</div>`
                 $('#viewContactTypeContainer').append(contactTypeElement)
             } else {
-                let contactElement = `<div>${contact.value}</div>`
+                let contactElement = `<div class="sub-text">${contact.value}</div>`
                 $('#viewContactContainer').append(contactElement)
             }
         })
 
         emails.forEach(email => {
-            let elementEmail = `<div>${email.value}</div>`
+            let elementEmail = `<div class="sub-text">${email.value}</div>`
 
             $('#viewEmailContainer').append(elementEmail)
         })
