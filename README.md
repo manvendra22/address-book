@@ -1,4 +1,4 @@
-# Contacts
+# Contacts Book
 
 > Contacts is a responsive web app to store and manage contacts. The
 > project started as a hiring challenge but I’m planning to implement
