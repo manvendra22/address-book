@@ -4,6 +4,8 @@
 > project started as a hiring challenge but I’m planning to implement
 > some more features to it to make it usable in day to day life.
 
+![Screenshot](contacts_book.png)
+
 ### Tech stack:
 - Javascript
 - JQuery
