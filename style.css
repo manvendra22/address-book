@@ -180,12 +180,9 @@ input {
 }
 
 @media only screen and (max-width: 600px) {
-    .git-link {
-        top: 85px;
-    }
-
     .content {
         width: 90%;
+        margin-top: 240px;
     }
 
     .search-bar {
@@ -194,5 +191,10 @@ input {
 
     .sort-container {
         width: 90%;
+    }
+
+    .header {
+        height: 240px;
+        padding-top: 80px;
     }
 }
