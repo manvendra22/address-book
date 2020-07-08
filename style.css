@@ -90,6 +90,12 @@ input {
     font-size: 14px;
 }
 
+.info-text {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+
 .data-container {
     width: 70%;
 }
