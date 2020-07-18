@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    background: #F1F4F7;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
@@ -13,9 +13,13 @@ input {
     height: 50px;
     border: none;
     padding: 0 20px;
+    outline: 0;
+    margin: 0 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 50px 0 rgba(43, 86, 112, .1);
 }
 
-.form-control::-webkit-input-placeholder {
+.search-bar::-webkit-input-placeholder {
     color: #bbb;
 }
 
@@ -25,7 +29,7 @@ input {
 }
 
 .header {
-    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    background: #F1F4F7;
     z-index: 2;
     position: fixed;
     display: flex;
@@ -92,7 +96,7 @@ input {
 
 .info-text {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
 }
 

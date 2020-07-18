@@ -81,7 +81,7 @@ class View extends EventEmitter {
         })
 
         if (elements === '') {
-            elements = '<div class="info-text">List is empty! Add some contacts to start.</div>'
+            elements = '<div class="info-text">List is empty, add some contacts to start.</div>'
         }
 
         $('#listContainer').html(elements)
