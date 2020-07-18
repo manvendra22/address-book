@@ -8,7 +8,7 @@
 
 https://contacts-book.netlify.app/
 
-![Screenshot](contacts_book.png)
+![Screenshot](https://res.cloudinary.com/dracarys/image/upload/v1595049717/contacts_book.png)
 
 ### Tech stack:
 
