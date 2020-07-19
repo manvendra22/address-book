@@ -1,5 +1,5 @@
 body {
-    background: #F1F4F7;
+    background-image: url('./inspiration-geometry.png');
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
@@ -29,7 +29,7 @@ input {
 }
 
 .header {
-    background: #F1F4F7;
+    background-image: url('./inspiration-geometry.png');
     z-index: 2;
     position: fixed;
     display: flex;
