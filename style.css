@@ -1,11 +1,16 @@
 body {
-    background-image: url('./inspiration-geometry.png');
+    background: #F8F9FC;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
 
 input {
     width: 100%;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
 }
 
 .search-bar {
@@ -23,13 +28,8 @@ input {
     color: #bbb;
 }
 
-.app {
-    display: flex;
-    justify-content: center;
-}
-
 .header {
-    background-image: url('./inspiration-geometry.png');
+    background: #F8F9FC;
     z-index: 2;
     position: fixed;
     display: flex;
@@ -57,9 +57,8 @@ input {
 }
 
 .content {
-    margin-top: 220px;
+    margin-top: 240px;
     width: 50%;
-    padding: 20px;
 }
 
 .sort-container {
@@ -70,7 +69,7 @@ input {
 .list-item {
     border-radius: 10px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 10px 15px 0px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 10px 20px 0px;
     padding: 20px;
     margin-bottom: 20px;
     display: flex;
@@ -79,8 +78,7 @@ input {
 }
 
 .list-item:hover {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 30px 60px 5px;
-    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 20px 40px 5px;
 }
 
 .main-text {
@@ -128,19 +126,56 @@ input {
     right: -18px;
 }
 
+.button {
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    transition: all .2s ease-in-out;
+}
+
+.button-primary {
+    background: #EFA0B8;
+    box-shadow: 0 20px 30px rgba(239, 160, 184, 0.3);
+}
+
+.button-primary:hover {
+    background: #d790a6;
+}
+
+.button-secondary {
+    background: #6b77e1;
+    box-shadow: 0 20px 30px rgba(64, 80, 216, 0.3);
+}
+
+.button-secondary:hover {
+    background: #4050d8;
+}
+
+.button-success {
+    background: #58B291;
+    box-shadow: 0 20px 30px rgba(72, 157, 126, 0.3);
+}
+
+.button-success:hover {
+    background: #489d7e;
+}
+
 .pin {
     display: inline-block;
-    background: #48a3b8;
+    background: #6b77e1;
     color: white;
     padding: 0 4px;
     font-size: 12px;
     font-weight: 600;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
 .pin:hover {
-    background: #4092A5;
+    background: #4050d8;
 }
 
 .pin-second {
