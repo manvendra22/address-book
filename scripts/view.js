@@ -7,13 +7,11 @@ class View extends EventEmitter {
         this.addAnotherContact = this.addAnotherContact.bind(this)
         this.resetFormModal = this.resetFormModal.bind(this)
         this.renderList = this.renderList.bind(this)
-        this.handleView = this.handleView.bind(this)
         this.handleEdit = this.handleEdit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.searchData = this.searchData.bind(this)
         this.sortData = this.sortData.bind(this)
         this.fillDataInEditModal = this.fillDataInEditModal.bind(this)
-        this.fillDataInViewModal = this.fillDataInViewModal.bind(this)
 
         this.addInteractionHandlers()
     }
@@ -25,7 +23,6 @@ class View extends EventEmitter {
         $('#addAnotherContact').click(this.addAnotherContact)
         $('#contactFormModal').on('hide.bs.modal', this.resetFormModal)
         $('#contactViewModal').on('hide.bs.modal', this.resetViewModal)
-        $('#listContainer').on('click', '.eye', this.handleView)
         $('#listContainer').on('click', '.edit', this.handleEdit)
         $('#listContainer').on('click', '.cross', this.handleDelete)
         $('input[name="search-input"]').on('input', this.searchData)
@@ -73,9 +70,9 @@ class View extends EventEmitter {
         let elements = ''
 
         contactsData.forEach(contact => {
-            const { _id, firstName, lastName, contacts, emails } = contact.doc
+            const { _id, firstName, lastName, contacts, emails, company, city, country, } = contact.doc
 
-            let element = this.getListElement(firstName, lastName, contacts, emails, _id)
+            let element = this.getListElement(firstName, lastName, contacts, emails, company, city, country, _id)
 
             elements += element
         })
@@ -92,11 +89,6 @@ class View extends EventEmitter {
         this.emit('deleteContact', id)
     }
 
-    handleView(e) {
-        let id = $(e.target).attr("data-id")
-        this.emit('viewContact', id)
-    }
-
     handleEdit(e) {
         let id = $(e.target).attr("data-id")
         this.emit('editContact', id)
@@ -111,34 +103,8 @@ class View extends EventEmitter {
         this.emit('sortContact', type)
     }
 
-    fillDataInViewModal(data) {
-        const { firstName, lastName, dob, contacts, emails } = data
-
-        $('#contactViewModal').modal('show');
-
-        $("#viewName").text(`${firstName} ${lastName}`);
-        $("#viewDob").text(dob);
-
-        contacts.forEach(contact => {
-            if (contact.name.includes('contactType')) {
-                let contactTypeElement = `<div class="sub-text">${contact.value}</div>`
-                $('#viewContactTypeContainer').append(contactTypeElement)
-            } else {
-                let contactElement = `<div class="sub-text">${contact.value}</div>`
-                $('#viewContactContainer').append(contactElement)
-            }
-        })
-
-        emails.forEach(email => {
-            let elementEmail = `<div class="sub-text">${email.value}</div>`
-
-            $('#viewEmailContainer').append(elementEmail)
-        })
-
-    }
-
     fillDataInEditModal(data) {
-        const { firstName, lastName, contacts, dob, emails, _id, _rev } = data
+        const { firstName, lastName, contacts, emails, dob, company, city, country, _id, _rev } = data
 
         $('#contactFormModal').modal('show');
         $('#contactContainer').html(null)
@@ -150,7 +116,10 @@ class View extends EventEmitter {
 
         $("#firstName").val(firstName);
         $("#lastName").val(lastName);
+        $("#company").val(company);
         $("#dob").val(dob);
+        $("#city").val(city);
+        $("#country").val(country);
 
         let contactElement = null, contactTypeElement = null;
 
@@ -214,24 +183,31 @@ class View extends EventEmitter {
         $('#contactContainer').append(fullContactElement)
     }
 
-    getListElement(firstName, lastName, contacts, emails, id) {
+    getListElement(firstName, lastName, contacts, emails, company, city, country, id) {
         let emailsLength = emails.length - 1
         let contactsLength = contacts.length / 2 - 1
 
         return `<div class="list-item">
-            <img src="/icons/cross.svg" class="icon cross" alt="delete" data-id=${id}>
-            <div class="data-container">
-                <div class="main-text">${firstName} ${lastName}</div>
-                <div class="sub-text">${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</div>
-                ${emails[0].value ? `<div class="sub-text">${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}  </div>` : ''} 
-            </div>
-            <div class="icons-container">
-                <img src="/icons/eye.svg" class="icon eye" alt="view" data-id=${id}>
-                <img src="/icons/edit.svg" class="icon edit" alt="edit" data-id=${id}>
-                    ${emails[0].value ? `<a href="mailto:${emails[0].value}"><img src="/icons/email.svg" class="icon" alt="mail"></a>` : ''}
-                <a href="tel:${contacts[0].value}"><img src="/icons/call.svg" class="icon" alt="call"></a>
-            </div>
-        </div>`
+                <div class="top">
+                    <div>
+                        <div class='main-text'>${firstName} ${lastName}</div>
+                        <div class='sub-text'>${company}</div>
+                    </div>
+                    <img src="/icons/edit.svg" class="icon edit" alt="edit" data-id=${id}>
+                    <img src="/icons/cross.svg" class="icon cross" alt="delete" data-id=${id}>
+                </div>
+                <div class="bottom dark-text">
+                    <div>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</div>
+                    <div>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}</div>
+                    <div>${city}, ${country}</div>
+                    <div class="contact-now">
+                        <a class="contact-link" href="mailto:${emails[0].value}"><img src="/icons/email.svg"
+                                class="contact-icon" alt="mail" />Send mail</a>
+                        <a class="contact-link" href="tel:${contacts[0].value}"><img src="/icons/call.svg"
+                                class="contact-icon" alt="call" />Call</a>
+                    </div>
+                </div>
+            </div>`
     }
 
     getEmailElement(name, value) {

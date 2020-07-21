@@ -5,7 +5,6 @@ class Controller {
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this)
         this.handleEdit = this.handleEdit.bind(this)
-        this.handleView = this.handleView.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
         this.handleSort = this.handleSort.bind(this)
@@ -13,7 +12,6 @@ class Controller {
 
         view.on('formSubmit', this.handleFormSubmit)
         view.on('editContact', this.handleEdit)
-        view.on('viewContact', this.handleView)
         view.on('deleteContact', this.handleDelete)
         view.on('searchContact', this.handleSearch)
         view.on('sortContact', this.handleSort)
@@ -30,14 +28,6 @@ class Controller {
 
         contact.then(data => {
             this.view.fillDataInEditModal(data)
-        })
-    }
-
-    handleView(id) {
-        let contact = this.modal.getContact(id)
-
-        contact.then(data => {
-            this.view.fillDataInViewModal(data)
         })
     }
 

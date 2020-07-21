@@ -32,6 +32,7 @@ input {
     box-shadow: 0 0 50px 0 rgba(43, 86, 112, .1);
 }
 
+.form-control::-webkit-input-placeholder,
 .search-bar::-webkit-input-placeholder {
     color: #bbb;
 }
@@ -110,10 +111,6 @@ input {
     text-transform: capitalize;
     font-size: 18px;
     font-weight: 500;
-}
-
-.high-text {
-    color: #4050d8;
 }
 
 .sub-text {
@@ -204,6 +201,13 @@ input {
 
 .pin-second:hover {
     background: #5A6268;
+}
+
+.info-text {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    color: #4050d8;
 }
 
 .mb-20 {
