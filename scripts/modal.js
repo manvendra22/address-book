@@ -105,5 +105,8 @@ class Modal extends EventEmitter {
 //     emails: [{ name: 'email_1', value: 'john@doe.com' }],
 //     contacts: [{ name: "contact_1", value: "12345" }, { name: "contactType_1", value: "Home" }],
 //     dob: "01/01/1990",
+//     city: "Paris",
+//     country: "France"
+//     company: "Google"
 //     _id: "1",
 // })

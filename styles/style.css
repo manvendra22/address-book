@@ -1,10 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
 body {
     background: #F8F9FC;
     font-family: 'Roboto', sans-serif;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 input {
