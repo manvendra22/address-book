@@ -1,6 +1,5 @@
 body {
     background: #F8F9FC;
-    font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -99,7 +98,8 @@ input {
 }
 
 .contact-link:hover {
-    color: unset;
+    color: #4050d8;
+    text-decoration: unset;
 }
 
 .contact-icon {
@@ -108,7 +108,6 @@ input {
 }
 
 .main-text {
-    text-transform: capitalize;
     font-size: 18px;
     font-weight: 500;
 }
@@ -182,8 +181,8 @@ input {
 
 .pin {
     display: inline-block;
-    background: #6b77e1;
-    color: white;
+    background: #d9dcf7;
+    color: #4050d8;
     padding: 0 4px;
     font-size: 12px;
     font-weight: 600;
@@ -192,15 +191,7 @@ input {
 }
 
 .pin:hover {
-    background: #4050d8;
-}
-
-.pin-second {
-    background: #6A6E70;
-}
-
-.pin-second:hover {
-    background: #5A6268;
+    background: #c6cbf3;
 }
 
 .info-text {
@@ -208,10 +199,6 @@ input {
     margin-top: 20px;
     text-align: center;
     color: #4050d8;
-}
-
-.mb-20 {
-    margin-bottom: 20px;
 }
 
 @media (max-width: 991px) {

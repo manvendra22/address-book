@@ -188,7 +188,7 @@ class View extends EventEmitter {
         let contactsLength = contacts.length / 2 - 1
 
         return `<div class="list-item">
-                <div class="top">
+                <div class="top text-capitalize">
                     <div>
                         <div class='main-text'>${firstName} ${lastName}</div>
                         <div class='sub-text'>${company}</div>
@@ -199,7 +199,7 @@ class View extends EventEmitter {
                 <div class="bottom dark-text">
                     <div>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</div>
                     <div>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}</div>
-                    <div>${city}, ${country}</div>
+                    <div class="text-capitalize">${city}, ${country}</div>
                     <div class="contact-now">
                         <a class="contact-link" href="mailto:${emails[0].value}"><img src="/icons/email.svg"
                                 class="contact-icon" alt="mail" />Send mail</a>

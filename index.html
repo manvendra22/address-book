@@ -18,9 +18,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+    </script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
@@ -37,10 +37,10 @@
                 <img src="./icons/github.svg" alt="github-logo" class="icon-git" />
             </a> -->
         <div class="topbar">
-            <div class="mb-20">
+            <div class="mb-3">
                 <input type="text" placeholder="Search contacts" class="search-bar" name="search-input">
             </div>
-            <div class="mb-20">
+            <div class="mb-3">
                 <button class="button button-primary" id="addContactBtn">Add Contact</button>
             </div>
             <div class="sort-container">
@@ -50,8 +50,8 @@
             </div>
         </div>
         <div id="listContainer" class="content">
-            <div class="list-item">
-                <div class="top">
+            <!-- <div class="list-item">
+                <div class="top text-capitalize">
                     <div>
                         <div class='main-text'>John Doe</div>
                         <div class='sub-text'>Google</div>
@@ -62,7 +62,7 @@
                 <div class="bottom dark-text">
                     <div>+919876543210</div>
                     <div>john.doe@gmail.com</div>
-                    <div>Paris, London</div>
+                    <div class="text-capitalize">Paris, London</div>
                     <div class="contact-now">
                         <a class="contact-link" href="mailto:john.doe@gmail.com"><img src="/icons/email.svg"
                                 class="contact-icon" alt="mail" />Send mail</a>
@@ -70,7 +70,7 @@
                                 class="contact-icon" alt="call" />Call</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Edit Modal-->
@@ -101,6 +101,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="dob">DOB</label>
+                                <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
+                                    name="dob" placeholder="01/01/1990">
+                            </div>
                             <div id="contactContainer">
                                 <div class="form-row">
                                     <div class="col">
@@ -122,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="pin pin-second mb-3" id="addAnotherContact">Add another
+                            <span class="pin mb-3" id="addAnotherContact">Add another
                                 contact</span>
                             <div id="emailContainer">
                                 <div class="form-group">
@@ -131,18 +136,14 @@
                                         placeholder="john@doe.com">
                                 </div>
                             </div>
+                            <span class="pin mb-3" id="addAnotherEmail">Add
+                                another
+                                email</span>
                             <div class="form-group">
                                 <label for="company">Company</label>
                                 <input type="text" class="form-control" id="company" name="company"
                                     placeholder="Enter company">
                             </div>
-                            <div class="form-group">
-                                <label for="dob">DOB</label>
-                                <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
-                                    name="dob" placeholder="01/01/1990">
-                            </div>
-                            <span class="pin pin-second mb-3" id="addAnotherEmail">Add another
-                                email</span>
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
