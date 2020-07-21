@@ -22,7 +22,7 @@ input {
 }
 
 .search-bar {
-    width: 50%;
+    width: 60%;
     height: 50px;
     padding: 0 20px;
     outline: 0;
@@ -214,5 +214,9 @@ input {
 @media (max-width: 767px) {
     .list-item {
         width: 90%;
+    }
+
+    .topbar {
+        margin-top: 80px;
     }
 }
