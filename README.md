@@ -1,8 +1,6 @@
 # Contacts Book
 
-> Contacts is a responsive web app to store and manage contacts. The
-> project started as a hiring challenge but I’m planning to implement
-> some more features to it to make it usable in day to day life. It's developed following MVC and Publish-Subscribe design pattern in Javascript.
+>Contacts is a responsive web app to store and manage contacts. It's developed following MVC and Publish-Subscribe design pattern in Javascript. It also uses >IndexedDB(PouchDB) to persist state in browser's local storage.
 
 ### Live link
 
@@ -31,7 +29,7 @@ https://contacts-book.netlify.app/
  - [ ] Add validations, add more fields
  - [ ] Make mobile design more native
  - [x] Use PouchDb to persist the state in local storage
- - [ ] Sync PouchDB to cloud database (MongoDB Atlas)
+ - [ ] Sync PouchDB to cloud database (CouchDB)
  - [ ] Make the app work offline (PWA)
  - [ ] Add google authentications
  - [ ] Add animations, make interactions look beautiful
