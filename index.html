@@ -1,179 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <link rel="icon" href="/icons/contacts.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Store contacts information using Indexed DB." />
+    <meta
+      name="description"
+      content="Store contacts information using Indexed DB."
+    />
     <title>Contacts Book</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css" />
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script> -->
-
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.1.1/dist/pouchdb.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="app">
-        <a target="_blank" href="https://github.com/manvendra22/contacts-book" class="git-link">
-            <img src="./icons/github.svg" alt="github-logo" class="icon-git" />
-        </a>
-        <div class="topbar">
-            <div class="mb-3">
-                <input type="text" placeholder="Search contacts" class="search-bar" name="search-input">
-            </div>
-            <div class="mb-3">
-                <button class="button button-primary" id="addContactBtn">Add Contact</button>
-            </div>
-            <div class="sort-container">
-                <span class="pin" data-id="firstName">By First name</span>
-                <span class="pin ml-1" data-id="lastName">By Last name</span>
-                <span class="pin ml-1" data-id="dob">By DOB</span>
-            </div>
+      <a
+        target="_blank"
+        href="https://github.com/manvendra22/contacts-book"
+        class="git-link"
+      >
+        <img src="./icons/github.svg" alt="github-logo" class="icon-git" />
+      </a>
+      <div class="topbar">
+        <div class="mb-3">
+          <input
+            type="text"
+            placeholder="Search contacts"
+            class="search-bar"
+            name="search-input"
+          />
         </div>
-        <div id="listContainer" class="content">
-            <!-- <div class="list-item">
-                <div class="top text-capitalize">
-                    <div>
-                        <div class='main-text'>John Doe</div>
-                        <div class='sub-text'>Google</div>
-                    </div>
-                    <img src="/icons/edit.svg" class="icon edit" alt="edit">
-                    <img src="/icons/cross.svg" class="icon cross" alt="delete">
-                </div>
-                <div class="bottom dark-text">
-                    <div>+919876543210</div>
-                    <div>john.doe@gmail.com</div>
-                    <div class="text-capitalize">Paris, London</div>
-                    <div class="contact-now">
-                        <a class="contact-link" href="mailto:john.doe@gmail.com"><img src="/icons/email.svg"
-                                class="contact-icon" alt="mail" />Send mail</a>
-                        <a class="contact-link" href="tel:+91 98765 43210"><img src="/icons/call.svg"
-                                class="contact-icon" alt="call" />Call</a>
-                    </div>
-                </div>
-            </div> -->
+        <div class="mb-3">
+          <button class="button button-primary" id="addContactBtn">
+            Add Contact
+          </button>
         </div>
+        <div class="sort-container">
+          <span class="pin" data-id="firstName">By First name</span>
+          <span class="pin ml-1" data-id="lastName">By Last name</span>
+          <span class="pin ml-1" data-id="dob">By DOB</span>
+        </div>
+      </div>
+      <div id="listContainer" class="content">
+        <div class="list-item">
+          <div class="top text-capitalize">
+            <div>
+              <div class="main-text">John Doe</div>
+              <div class="sub-text">Google</div>
+            </div>
+            <img src="/icons/edit.svg" class="icon edit" alt="edit" />
+            <img src="/icons/cross.svg" class="icon cross" alt="delete" />
+          </div>
+          <div class="bottom dark-text">
+            <div>+919876543210</div>
+            <div>john.doe@gmail.com</div>
+            <div class="text-capitalize">Paris, London</div>
+            <div class="contact-now">
+              <a class="contact-link" href="mailto:john.doe@gmail.com">
+                <img src="/icons/email.svg" class="contact-icon" alt="mail" />
+                Send mail</a
+              >
+              <a class="contact-link" href="tel:+91 98765 43210">
+                <img src="/icons/call.svg" class="contact-icon" alt="call" />
+                Call</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Edit Modal-->
-        <div class="modal fade" id="contactFormModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add contact</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="contactForm">
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName"
-                                            placeholder="Enter first name">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName"
-                                            placeholder="Enter last name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="dob">DOB</label>
-                                <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" id="dob"
-                                    name="dob" placeholder="01/01/1990">
-                            </div>
-                            <div id="contactContainer">
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="contact_1">Contact</label>
-                                            <input type="number" class="form-control contact" id="contact_1"
-                                                name="contact_1" placeholder="+91 98765 43210">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="contactType_1">Contact type</label>
-                                            <select class="form-control" id="contactType_1" name="contactType_1">
-                                                <option>Home</option>
-                                                <option>Office</option>
-                                                <option>Personal</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="pin mb-3" id="addAnotherContact">Add another
-                                contact</span>
-                            <div id="emailContainer">
-                                <div class="form-group">
-                                    <label for="email_1">Email</label>
-                                    <input type="email" class="form-control email" id="email_1" name="email_1"
-                                        placeholder="john@doe.com">
-                                </div>
-                            </div>
-                            <span class="pin mb-3" id="addAnotherEmail">Add
-                                another
-                                email</span>
-                            <div class="form-group">
-                                <label for="company">Company</label>
-                                <input type="text" class="form-control" id="company" name="company"
-                                    placeholder="Enter company">
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="city">City</label>
-                                        <input type="text" class="form-control" id="city" name="city"
-                                            placeholder="Enter city">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="country">Country</label>
-                                        <input type="text" class="form-control" id="country" name="country"
-                                            placeholder="Enter country">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="button button-tertiary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="button button-secondary" id="addDataBtn">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+      <!-- Edit Modal-->
+      <div
+        class="modal fade"
+        id="contactFormModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add contact</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <form id="contactForm">
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="firstName">First Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="Enter first name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="lastName">Last Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Enter last name"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="dob">DOB</label>
+                  <input
+                    type="date"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    class="form-control"
+                    id="dob"
+                    name="dob"
+                    placeholder="01/01/1990"
+                  />
+                </div>
+                <div id="contactContainer">
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="contact_1">Contact</label>
+                        <input
+                          type="number"
+                          class="form-control contact"
+                          id="contact_1"
+                          name="contact_1"
+                          placeholder="+91 98765 43210"
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="contactType_1">Contact type</label>
+                        <select
+                          class="form-control"
+                          id="contactType_1"
+                          name="contactType_1"
+                        >
+                          <option>Home</option>
+                          <option>Office</option>
+                          <option>Personal</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="pin mb-3" id="addAnotherContact"
+                  >Add another contact</span
+                >
+                <div id="emailContainer">
+                  <div class="form-group">
+                    <label for="email_1">Email</label>
+                    <input
+                      type="email"
+                      class="form-control email"
+                      id="email_1"
+                      name="email_1"
+                      placeholder="john@doe.com"
+                    />
+                  </div>
+                </div>
+                <span class="pin mb-3" id="addAnotherEmail"
+                  >Add another email</span
+                >
+                <div class="form-group">
+                  <label for="company">Company</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="company"
+                    name="company"
+                    placeholder="Enter company"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        name="city"
+                        placeholder="Enter city"
+                      />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="country">Country</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="country"
+                        name="country"
+                        placeholder="Enter country"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="button button-tertiary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="submit"
+                    class="button button-secondary"
+                    id="addDataBtn"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <script src="./scripts/eventEmitter.js"></script>
     <script src="./scripts/modal.js"></script>
     <script src="./scripts/view.js"></script>
     <script src="./scripts/controller.js"></script>
-</body>
-
+  </body>
 </html>
