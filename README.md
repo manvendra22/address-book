@@ -26,8 +26,7 @@ https://contacts-book.netlify.app/
 ### Roadmap:
 
 - [x] Implement search functionality
-- [ ] Add validations, add more fields
-- [ ] Make mobile design more native
+- [x] Add validations, add more fields
 - [x] Use PouchDb to persist the state in local storage
 - [ ] Sync PouchDB to cloud database (CouchDB)
 - [ ] Make the app work offline (PWA)
