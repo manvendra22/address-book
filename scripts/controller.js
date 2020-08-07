@@ -15,6 +15,15 @@ class Controller {
         view.on('searchContact', this.handleSearch)
 
         modal.on('listUpdated', this.handleListUpdate)
+
+        this.modal.addContact({
+            _id: "1",
+            fullName: "John Doe",
+            emails: [{ name: 'email_1', value: 'john@doe.com' }],
+            contacts: [{ name: "contact_1", value: "9876543210" }, { name: "contactType_1", value: "Office" }],
+            company: "Google",
+            title: "Developer",
+        })
     }
 
     handleFormSubmit(data) {

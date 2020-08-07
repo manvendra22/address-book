@@ -80,13 +80,3 @@ class Modal extends EventEmitter {
         }
     }
 }
-
-// this.addContact({
-//     _id: "1",
-//     firstName: "John",
-//     lastName: "Doe",
-//     emails: [{ name: 'email_1', value: 'john@doe.com' }],
-//     contacts: [{ name: "contact_1", value: "12345" }, { name: "contactType_1", value: "Home" }],
-//     company: "Google"
-//     title: "Developer",
-// })
