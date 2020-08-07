@@ -66,9 +66,9 @@
           </button>
         </div>
         <div class="sort-container">
-          <span class="pin" data-id="firstName">By First name</span>
+          <!-- <span class="pin" data-id="firstName">By First name</span>
           <span class="pin ml-1" data-id="lastName">By Last name</span>
-          <span class="pin ml-1" data-id="dob">By DOB</span>
+          <span class="pin ml-1" data-id="dob">By DOB</span> -->
         </div>
       </div>
       <div id="listContainer" class="content">
@@ -76,7 +76,7 @@
           <div class="top text-capitalize">
             <div>
               <div class="main-text">John Doe</div>
-              <div class="sub-text">Google</div>
+              <div class="sub-text">Developer, Google</div>
             </div>
             <img src="/icons/edit.svg" class="icon edit" alt="edit" />
             <img src="/icons/cross.svg" class="icon cross" alt="delete" />
@@ -84,7 +84,6 @@
           <div class="bottom dark-text">
             <div>+919876543210</div>
             <div>john.doe@gmail.com</div>
-            <div class="text-capitalize">Paris, London</div>
             <div class="contact-now">
               <a class="contact-link" href="mailto:john.doe@gmail.com">
                 <img src="/icons/email.svg" class="contact-icon" alt="mail" />
@@ -122,46 +121,19 @@
             </div>
             <div class="modal-body">
               <form id="contactForm">
-                <div class="form-row">
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="firstName">First Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="firstName"
-                        name="firstName"
-                        placeholder="Enter first name"
-                      />
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="lastName">Last Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="lastName"
-                        name="lastName"
-                        placeholder="Enter last name"
-                      />
-                    </div>
-                  </div>
-                </div>
                 <div class="form-group">
-                  <label for="dob">DOB</label>
+                  <label for="fullName">Name</label>
                   <input
-                    type="date"
-                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    type="text"
                     class="form-control"
-                    id="dob"
-                    name="dob"
-                    placeholder="01/01/1990"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="John Doe"
                   />
                 </div>
                 <div id="contactContainer">
                   <div class="form-row">
-                    <div class="col">
+                    <div class="col-8">
                       <div class="form-group">
                         <label for="contact_1">Contact</label>
                         <input
@@ -207,38 +179,28 @@
                 <span class="pin mb-3" id="addAnotherEmail"
                   >Add another email</span
                 >
-                <div class="form-group">
-                  <label for="company">Company</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="company"
-                    name="company"
-                    placeholder="Enter company"
-                  />
-                </div>
                 <div class="form-row">
-                  <div class="col">
+                  <div class="col-8">
                     <div class="form-group">
-                      <label for="city">City</label>
+                      <label for="company">Company</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="city"
-                        name="city"
-                        placeholder="Enter city"
+                        id="company"
+                        name="company"
+                        placeholder="Google"
                       />
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
-                      <label for="country">Country</label>
+                      <label for="title">Title</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="country"
-                        name="country"
-                        placeholder="Enter country"
+                        id="title"
+                        name="title"
+                        placeholder="Developer"
                       />
                     </div>
                   </div>

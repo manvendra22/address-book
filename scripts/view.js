@@ -70,9 +70,9 @@ class View extends EventEmitter {
         let elements = ''
 
         contactsData.forEach(contact => {
-            const { _id, firstName, lastName, contacts, emails, company, city, country, } = contact.doc
+            const { _id, fullName, contacts, emails, company, title } = contact.doc
 
-            let element = this.getListElement(firstName, lastName, contacts, emails, company, city, country, _id)
+            let element = this.getListElement(_id, fullName, contacts, emails, company, title)
 
             elements += element
         })
@@ -104,7 +104,7 @@ class View extends EventEmitter {
     }
 
     fillDataInEditModal(data) {
-        const { firstName, lastName, contacts, emails, dob, company, city, country, _id, _rev } = data
+        const { _id, _rev, fullName, contacts, emails, company, title } = data
 
         $('#contactFormModal').modal('show');
         $('#contactContainer').html(null)
@@ -114,12 +114,9 @@ class View extends EventEmitter {
         $("#contactForm").attr("data-id", _id);
         $("#contactForm").attr("data-rev", _rev);
 
-        $("#firstName").val(firstName);
-        $("#lastName").val(lastName);
+        $("#fullName").val(fullName);
         $("#company").val(company);
-        $("#dob").val(dob);
-        $("#city").val(city);
-        $("#country").val(country);
+        $("#title").val(title);
 
         let contactElement = null, contactTypeElement = null;
 
@@ -183,15 +180,15 @@ class View extends EventEmitter {
         $('#contactContainer').append(fullContactElement)
     }
 
-    getListElement(firstName, lastName, contacts, emails, company, city, country, id) {
+    getListElement(id, fullName, contacts, emails, company, title) {
         let emailsLength = emails.length - 1
         let contactsLength = contacts.length / 2 - 1
 
         return `<div class="list-item">
                 <div class="top text-capitalize">
                     <div>
-                        <div class='main-text'>${firstName} ${lastName}</div>
-                        <div class='sub-text'>${company}</div>
+                        <div class='main-text'>${fullName}</div>
+                        <div class='sub-text'>${title}, ${company}</div>
                     </div>
                     <img src="/icons/edit.svg" class="icon edit" alt="edit" data-id=${id}>
                     <img src="/icons/cross.svg" class="icon cross" alt="delete" data-id=${id}>
@@ -199,7 +196,6 @@ class View extends EventEmitter {
                 <div class="bottom dark-text">
                     <div>${contacts[0].value}  ${contactsLength ? `(${contactsLength} more)` : ''}</div>
                     <div>${emails[0].value} ${emailsLength ? `(${emailsLength} more)` : ''}</div>
-                    <div class="text-capitalize">${city}, ${country}</div>
                     <div class="contact-now">
                         <a class="contact-link" href="mailto:${emails[0].value}"><img src="/icons/email.svg"
                                 class="contact-icon" alt="mail" />Send mail</a>
@@ -255,7 +251,7 @@ class View extends EventEmitter {
 
 // $("#contactForm").validate({
 //     rules: {
-//         firstName: {
+//         fullName: {
 //             required: true,
 //             maxlength: 25
 //         },
