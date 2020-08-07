@@ -258,7 +258,7 @@ class View extends EventEmitter {
 
     getFullContactElement(contactElement, contactTypeElement) {
         return `<div class="form-row">
-            <div class="col">
+            <div class="col-8">
                 ${contactElement}
             </div>
             <div class="col">
