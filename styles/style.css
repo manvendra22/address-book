@@ -55,10 +55,6 @@ input {
   transform: rotate(360deg) scale(1.2);
 }
 
-.sort-container {
-  font-size: 12px;
-}
-
 .content {
   display: flex;
   flex-wrap: wrap;

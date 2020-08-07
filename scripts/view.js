@@ -10,7 +10,6 @@ class View extends EventEmitter {
         this.handleEdit = this.handleEdit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.searchData = this.searchData.bind(this)
-        this.sortData = this.sortData.bind(this)
         this.fillDataInEditModal = this.fillDataInEditModal.bind(this)
 
         this.addInteractionHandlers()
@@ -26,7 +25,6 @@ class View extends EventEmitter {
         $('#listContainer').on('click', '.edit', this.handleEdit)
         $('#listContainer').on('click', '.cross', this.handleDelete)
         $('input[name="search-input"]').on('input', this.searchData)
-        $('.sort-container').on('click', '.pin', this.sortData)
     }
 
     handleAddContactBtn() {
@@ -96,11 +94,6 @@ class View extends EventEmitter {
 
     searchData(e) {
         this.emit('searchContact', e.target.value)
-    }
-
-    sortData(e) {
-        let type = $(e.target).data("id")
-        this.emit('sortContact', type)
     }
 
     fillDataInEditModal(data) {

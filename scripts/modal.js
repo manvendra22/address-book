@@ -58,7 +58,7 @@ class Modal extends EventEmitter {
 
     deleteContact(id) {
         this.db.get(id).then(doc => {
-            console.log("In Delete ", this)
+            console.log("Delete ", this)
             return this.db.remove(doc);
         }).then(function (result) {
             console.log('Deleted ', result)
@@ -78,24 +78,6 @@ class Modal extends EventEmitter {
         } else {
             this.emit('listUpdated', this._contacts)
         }
-    }
-
-    sortContact(type) {
-        let newData = this._contacts.sort(function (a, b) {
-
-            let x = a?.doc[type], y = b?.doc[type]
-
-            if (type == 'dob') {
-                x = new Date(x)
-                y = new Date(y)
-            }
-
-            if (x < y) { return -1; }
-            if (x > y) { return 1; }
-            return 0;
-        })
-
-        this.emit('listUpdated', newData)
     }
 }
 

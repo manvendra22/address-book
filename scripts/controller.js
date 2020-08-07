@@ -7,14 +7,12 @@ class Controller {
         this.handleEdit = this.handleEdit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
-        this.handleSort = this.handleSort.bind(this)
         this.handleListUpdate = this.handleListUpdate.bind(this)
 
         view.on('formSubmit', this.handleFormSubmit)
         view.on('editContact', this.handleEdit)
         view.on('deleteContact', this.handleDelete)
         view.on('searchContact', this.handleSearch)
-        view.on('sortContact', this.handleSort)
 
         modal.on('listUpdated', this.handleListUpdate)
     }
@@ -37,10 +35,6 @@ class Controller {
 
     handleSearch(value) {
         this.modal.searchContact(value)
-    }
-
-    handleSort(type) {
-        this.modal.sortContact(type)
     }
 
     handleListUpdate(data) {
