@@ -30,5 +30,5 @@ https://contacts-book.netlify.app/
 - [x] Use PouchDb to persist the state in local storage
 - [ ] Sync PouchDB to cloud database (CouchDB)
 - [ ] Make the app work offline (PWA)
-- [ ] Add cookie/unique identfier
+- [ ] Add cookie/unique identfier or use Firebase for authentication
 - [ ] Use PouchDB find queries for search
