@@ -1,6 +1,6 @@
 # Contacts Book
 
-> Contacts is a responsive web app to store and manage contacts. It's developed following MVC and Publish-Subscribe design pattern in Javascript. It also uses IndexedDB(PouchDB) to persist state in browser's local storage.
+> A responsive web app to store and manage contacts, developed following MVC and Publish-Subscribe design pattern in Javascript. It also uses IndexedDB(PouchDB) to persist state in browser's local storage.
 
 ### Live link
 
